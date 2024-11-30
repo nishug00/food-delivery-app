@@ -1,45 +1,40 @@
-import React, { useEffect , useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./login.module.css";
+import styles from "./Login.module.css";
 import { login } from "../../../Services/auth.service";
 import Footer from "../../Common/Footer/footer";
-import mainImage from "../../../assets/mainPageImage.png";
-import logoImage from "../../../assets/orderImage.png";
+import mainImage from "../../../assets/MainPageImage.png";
+import logoImage from "../../../assets/OrderImage.png";
 
 const Login = () => {
     const navigate = useNavigate();
-    
+
     useEffect(() => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('userId');
-        localStorage.removeItem('username');
-        localStorage.removeItem('email');
-        localStorage.removeItem('gender');
-        localStorage.removeItem('country');
-    }, []); 
+        localStorage.clear();
+    }, []);
 
-    const [formData, setFormData] = useState({ email: "", password: "" });
-    const [formErrors, setFormErrors] = useState({ email: null, password: null });
-    const [loading, setLoading] = useState(false);
+    const [credentials, setCredentials] = useState({ email: "", password: "" });
+    const [errors, setErrors] = useState({ email: null, password: null });
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleLogin = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setFormErrors({ email: null, password: null });
+        setErrors({ email: null, password: null });
+        let hasError = false;
 
-        let hasErrors = false;
-        if (!formData.email.includes("@") || !formData.email.includes(".")) {
-            setFormErrors((prev) => ({ ...prev, email: "Email is invalid" })); 
-            hasErrors = true;
+        if (!credentials.email.includes("@") || !credentials.email.includes(".")) {
+            setErrors((prev) => ({ ...prev, email: "Invalid email format" }));
+            hasError = true;
         }
-        if (!formData.password) {
-            setFormErrors((prev) => ({ ...prev, password: "Password is required" }));
-            hasErrors = true;
+        if (!credentials.password) {
+            setErrors((prev) => ({ ...prev, password: "Password is required" }));
+            hasError = true;
         }
-        if (hasErrors) return;
+        if (hasError) return;
 
         try {
-            setLoading(true);
-            const response = await login(formData);
+            setIsLoading(true);
+            const response = await login(credentials);
             if (response?.token) {
                 localStorage.setItem("token", response.token);
                 localStorage.setItem("userId", response.user.id);
@@ -49,69 +44,75 @@ const Login = () => {
                 localStorage.setItem("country", response.user.country);
                 navigate("/home");
             }
-        } catch (error) {
-            console.error("Login Error:", error);
+        } catch {
+            setErrors((prev) => ({
+                ...prev,
+                email: "Login failed. Check your credentials.",
+            }));
         } finally {
-            setLoading(false);
+            setIsLoading(false);
         }
     };
 
     return (
         <>
-            <div className={styles.wrapper}>
-                <div className={styles.leftSection}>
-                    <div className={styles.formContainer}>
-                        <div className={styles.logoContainer}>
+            <div className={styles.container}>
+                <div className={styles.left}>
+                    <div className={styles.formWrapper}>
+                        <div className={styles.logoWrapper}>
                             <img src={logoImage} alt="Logo" className={styles.logo} />
                         </div>
-                        <div className={styles.titleContainer}>
+                        <div className={styles.heading}>
                             <h1 className={styles.title}>Welcome Back 👋</h1>
                             <p className={styles.subtitle}>
                                 Today is a new day. It's your day. Sign in to start ordering.
                             </p>
                         </div>
-                        <form className={styles.form} onSubmit={handleLogin}>
-                            <div className={styles.inputGroup}>
+                        <form className={styles.form} onSubmit={handleSubmit}>
+                            <div className={styles.field}>
                                 <label className={styles.label}>Email</label>
                                 <input
-                                    className={styles.input}
                                     type="text"
                                     placeholder="Example@gmail.com"
-                                    value={formData.email}
+                                    className={styles.input}
+                                    value={credentials.email}
                                     onChange={(e) =>
-                                        setFormData({ ...formData, email: e.target.value })
+                                        setCredentials({ ...credentials, email: e.target.value })
                                     }
                                 />
-                                {formErrors.email && <p className={styles.error}>{formErrors.email}</p>}
+                                {errors.email && <p className={styles.error}>{errors.email}</p>}
                             </div>
-                            <div className={styles.inputGroup}>
+                            <div className={styles.field}>
                                 <label className={styles.label}>Password</label>
                                 <input
-                                    className={styles.input}
                                     type="password"
                                     placeholder="At least 8 characters"
-                                    value={formData.password}
+                                    className={styles.input}
+                                    value={credentials.password}
                                     onChange={(e) =>
-                                        setFormData({ ...formData, password: e.target.value })
+                                        setCredentials({ ...credentials, password: e.target.value })
                                     }
                                 />
-                                {formErrors.password && (
-                                    <p className={styles.error}>{formErrors.password}</p>
-                                )}
+                                {errors.password && <p className={styles.error}>{errors.password}</p>}
                             </div>
                             <div className={styles.forgotPassword}>Forgot Password?</div>
-                            <button className={styles.button} disabled={loading} type="submit">
-                                {loading ? "Loading..." : "Sign In"}
+                            <button className={styles.submitButton} disabled={isLoading}>
+                                {isLoading ? "Loading..." : "Sign In"}
                             </button>
-                            <div className={styles.signUp}>
+                            <div className={styles.register}>
                                 Don't have an account?{" "}
-                                <span onClick={() => navigate("/register")}>Sign up</span>
+                                <span
+                                    className={styles.registerLink}
+                                    onClick={() => navigate("/register")}
+                                >
+                                    Sign up
+                                </span>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div className={styles.rightSection}>
-                    <img src={mainImage} alt="Food" className={styles.image} />
+                <div className={styles.right}>
+                    <img src={mainImage} alt="Main Visual" className={styles.image} />
                 </div>
             </div>
             <Footer />

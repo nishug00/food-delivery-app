@@ -1,19 +1,16 @@
-.wrapper {
+.container {
     display: flex;
     width: 100%;
     height: 100vh;
-    box-sizing: border-box;
     padding: 10px;
 }
 
-.leftSection,
-.rightSection {
+.left,
+.right {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    height: 100%;
 }
 
 .image {
@@ -23,23 +20,22 @@
     border-radius: 10px;
 }
 
-.formContainer {
+.formWrapper {
     max-width: 400px;
     width: 100%;
-    margin: 0 auto;
 }
 
-.logoContainer {
+.logoWrapper {
     text-align: center;
     margin-bottom: 30px;
 }
 
 .logo {
     width: 170px;
-    height: 43px;
+    height: auto;
 }
 
-.titleContainer {
+.heading {
     margin-bottom: 30px;
 }
 
@@ -59,7 +55,7 @@
     margin-top: 20px;
 }
 
-.inputGroup {
+.field {
     margin-bottom: 15px;
 }
 
@@ -67,6 +63,7 @@
     font-size: 14px;
     color: #0c1421;
     margin-bottom: 5px;
+    display: block;
 }
 
 .input {
@@ -85,6 +82,7 @@
     padding-left: 0;
 }
 
+
 .error {
     color: red;
     font-size: 0.7rem;
@@ -98,7 +96,7 @@
     margin-bottom: 20px;
 }
 
-.button {
+.submitButton {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -111,40 +109,30 @@
     margin-bottom: 20px;
 }
 
-.button:hover {
+.submitButton:hover {
     background-color: #cc7a00;
 }
 
-.signUp {
+.register {
     font-size: 12px;
     color: #313957;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 
-.signUp span {
+.registerLink {
     color: #ff9900;
     font-weight: 400;
     cursor: pointer;
 }
 
 @media (max-width: 768px) {
-    .wrapper {
+    .container {
         flex-direction: column;
-        padding: 20px 10px;
+        padding: 20px;
         height: auto;
     }
 
-    .rightSection {
-        display: none;
-    }
-
-    .leftSection {
-        width: 100%;
-    }
-
-    .image {
+    .right {
         display: none;
     }
 }

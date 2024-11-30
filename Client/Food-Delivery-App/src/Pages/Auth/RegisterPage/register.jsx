@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styles from './Register.module.css';
-import image from '../../../assets/mainPageImage.png';
-import titleImage from '../../../assets/orderImage.png';
+import bannerImage from '../../../assets/mainPageImage.png';
+import logoImage from '../../../assets/orderImage.png';
 import Footer from '../../Common/Footer/footer';
 import { register } from '../../../Services/auth.service';
 import { useNavigate } from 'react-router-dom';
 
-function Register() {
+const Register = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
@@ -22,7 +22,7 @@ function Register() {
         password: null,
     });
 
-    const handleRegister = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setFormErrors({ email: null, name: null, phone: null, password: null });
         let hasErrors = false;
@@ -49,11 +49,9 @@ function Register() {
         try {
             setLoading(true);
             await register(formData);
-            setTimeout(() => {
-                navigate('/');
-            }, 1000);
+            setTimeout(() => navigate('/'), 1000);
         } catch (error) {
-            toast.error(error.message || 'Registration failed. Please try again.');
+            alert(error.message || 'Registration failed. Please try again.');
         } finally {
             setLoading(false);
         }
@@ -61,19 +59,19 @@ function Register() {
 
     return (
         <>
-            <div className={styles.registerContainer}>
+            <div className={styles.container}>
                 <div className={styles.formSection}>
                     <div className={styles.formWrapper}>
-                        <div className={styles.logoContainer}>
-                            <img src={titleImage} alt="Logo" className={styles.logo} />
+                        <div className={styles.logoWrapper}>
+                            <img src={logoImage} alt="Logo" className={styles.logo} />
                         </div>
-                        <div className={styles.headerText}>
-                            <h1 className={styles.welcomeText}>Welcome Back 👋</h1>
-                            <p className={styles.subtitleText}>
+                        <div className={styles.header}>
+                            <h1 className={styles.title}>Welcome Back 👋</h1>
+                            <p className={styles.subtitle}>
                                 Today is a new day. It's your day. Sign in to start ordering.
                             </p>
                         </div>
-                        <form className={styles.form} onSubmit={handleRegister}>
+                        <form className={styles.form} onSubmit={handleSubmit}>
                             <div className={styles.inputGroup}>
                                 <label className={styles.label}>Name</label>
                                 <input
@@ -100,7 +98,7 @@ function Register() {
                                 <label className={styles.label}>Email</label>
                                 <input
                                     className={styles.input}
-                                    type="text"
+                                    type="email"
                                     placeholder="Example@gmail.com"
                                     value={formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -118,12 +116,12 @@ function Register() {
                                 />
                                 {formErrors.password && <p className={styles.error}>{formErrors.password}</p>}
                             </div>
-                            <button className={styles.submitButton} disabled={loading} type="submit">
+                            <button className={styles.submit} disabled={loading} type="submit">
                                 {loading ? 'Loading...' : 'Sign Up'}
                             </button>
-                            <p className={styles.switchToLogin}>
+                            <p className={styles.switch}>
                                 Already have an account?{' '}
-                                <span onClick={() => navigate('/')} className={styles.loginLink}>
+                                <span onClick={() => navigate('/')} className={styles.switchLink}>
                                     Sign in
                                 </span>
                             </p>
@@ -131,12 +129,12 @@ function Register() {
                     </div>
                 </div>
                 <div className={styles.imageSection}>
-                    <img src={image} alt="Delicious food" className={styles.image} />
+                    <img src={bannerImage} alt="Delicious food" className={styles.banner} />
                 </div>
             </div>
             <Footer />
         </>
     );
-}
+};
 
 export default Register;
