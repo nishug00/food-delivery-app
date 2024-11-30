@@ -1,0 +1,559 @@
+.pageContainer {
+  padding: 0 90px;
+}
+
+.snackSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #03081f;
+  border-radius: 10px;
+  padding: 40px;
+  position: relative;
+}
+
+.snackBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.snackDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 30px;
+  margin-top: 30px;
+  color: white;
+  z-index: 1;
+}
+
+.tagline {
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.location {
+  font-size: 44px;
+  font-weight: 600;
+}
+
+.detailContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  width: 68%;
+  padding-top: 20px;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 20px;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+}
+
+.detailItem img {
+  width: 30px;
+  height: 30px;
+}
+
+.snackImageSection {
+  flex-shrink: 0;
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.snackMain {
+  width: 100%;
+  border-radius: 10px;
+  margin-right: 40px;
+}
+
+.ratingIcon {
+  position: absolute;
+  left: -90px;
+  top: 78%;
+  transform: translateY(-40%);
+  width: 115px;
+  height: 125px;
+  z-index: 2;
+  border-radius: 10px;
+}
+
+.openTimings {
+  width: 270px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 50px;
+  background: #fc8a06;
+  border-radius: 0 8px 8px 0;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  position: relative;
+  top: -25px;
+}
+
+.openTimings img {
+  width: 25px;
+  height: 25px;
+}
+
+.openTimings p{
+  color: #ffffff;
+}
+
+.offersSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px 40px 60px;
+  width: 100%;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #03081f;
+  padding: 13px;
+  border-radius: 50px;
+  width: 250px;
+}
+
+.searchBox img {
+  width: 20px;
+  height: 20px;
+}
+
+.searchBox span {
+  font-size: 14px;
+  color: #03081f;
+}
+
+.menuContainer1 {
+  background: #fc8a06;
+  width: 100%;
+  padding: 20px 100px 20px 0;
+}
+
+.menuItems {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  padding: 0 10px;
+  gap: 45px;
+}
+
+.offerText {
+  border: 1px solid #000000;
+  background: #03081f;
+  width: 124px;
+  height: 39px;
+  border-radius: 50px;
+  border: 1px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.pageContainer1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 60px 100px;
+  width: 100%;
+}
+
+.gridThreeColumns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Always three columns */
+  gap: 20px;
+}
+
+.gridTwoColumns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Maintain three columns */
+  gap: 20px;
+}
+
+/* Invisible placeholder for the third column */
+.gridTwoColumns .discountSection:nth-child(3) {
+  visibility: hidden; /* Hides the third item but keeps its space */
+}
+
+
+.discountSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.discountImage {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.discountTag {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  width: 80px;
+  height: 55px;
+  background-color: #03081f;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 0px 0px 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.restaurantsContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 0 0 10px 40px;
+  z-index: 4;
+}
+
+.restaurants {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  color: #fc8a06;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.restaurantTitle {
+  font-size: 26px;
+  font-weight: 700;
+  text-align: left;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.addItem {
+  width: 100px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 45px 0 12px 0;
+  background-color: #ffffff;
+  opacity: 0.9;
+  position: absolute;
+  bottom: 0;
+  right: -15px;
+  z-index: 2;
+}
+
+.addItem img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 15px;
+}
+
+.addItem button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+} 
+.heading,.friesheading,.drinksheading{
+  font-size: 44px;
+  font-weight: 700;
+  color: #000000;
+  padding: 0 0 40px 0;
+}
+.friesheading,.drinksheading{
+    padding-top: 70px;
+    color: #FC8A06;
+}
+
+.pageContainer1.withCart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cartContainer {
+  width: 367px; /* Width of the "My Basket" */
+  margin-right: 20px; /* Space between the cart and products */
+}
+
+.container {
+  width: 496px;
+  height: 245px;
+  position: relative;
+  top: 1546px;
+  left: 100px;
+  gap: 0;
+  border: 1px solid #0000001a;
+  opacity: 0.8;
+  background-color: #ffffff;
+}
+
+/* Default 3 cards per row */
+.burgerWrapper, .friesWrapper, .drinksWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+/* For the cart view: 2 cards per row, third space empty */
+.twoRowLayout .card {
+  width: calc((100% - 30px) / 3); /* Keeps the same width */
+}
+
+.twoRowLayout .card:nth-child(3n) { 
+  visibility: hidden; /* Hide the third card slot */
+}
+
+  
+  .card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc((100% - 60px) / 3);
+    height: 215px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2),
+                0 -4px 8px rgba(0, 0, 0, 0.1),
+                4px 0 8px rgba(0, 0, 0, 0.1),
+                -4px 0 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* Important for absolute positioning of children */
+  }
+  
+  .cardContent {
+    width: 60%; 
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .image {
+    width: 45%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1; /* Ensure image is below the addItem button */
+  }
+  
+  
+  .burgerName,.FriesName,.DrinksName {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+    margin-top: 30px;
+  }
+  
+  .description {
+    font-size: 12px;
+    color: #000000;
+    margin: 10px 0;
+  }
+  
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .infoWrapper {
+    padding: 70px 0 40px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .infoContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+  .column {
+    flex: 1;
+    padding: 100px 40px 50px 40px;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+  
+  .column p {
+    font-size: 14px;
+    color: #000;
+  }
+  
+  .column p strong {
+    font-weight: bold;
+  }
+  
+  .column p .contact-info {
+    font-size: 26px;  /* Larger font size for contact info */
+    font-weight: 500;
+  }
+  
+  
+  .column1 {
+    flex: 1;
+    padding: 100px 40px 10px 40px;
+    border-radius: 8px;
+    background-color: #03081F;
+    color: #ffffff;
+    box-sizing: border-box;
+    letter-spacing: 0.5px;
+  }
+  
+  .column1 h3,
+  .column1 p {
+    color: #ffffff;
+  }
+  
+
+.deliveryInfoHeader {
+  display: flex;
+  align-items: center;  /* Aligns text and image horizontally */
+  margin-bottom: 15px;
+}
+
+.deliveryInfoHeader img {
+  width: 40px; 
+  height: 40px;
+  margin-right: 10px;  /* Space between image and text */
+}
+
+h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.column , .column1 p {
+  font-size: 13px;
+  margin: 8px 0;
+  line-height: 2.8;
+}
+.locationWrapper {
+  border-radius: 15px;
+  box-shadow: 5px 5px 14px 0px #00000040;
+  margin-top: 60px;
+  overflow: hidden;  /* Ensures the map respects border radius */
+  position: relative;  /* Establishes positioning context for children */
+}
+
+.rectangleContainer {
+  width: 231px;
+  height: 73px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 5px 5px 14px 0px #00000040;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;  /* Overlaps the map */
+  right: 20px;  /* Adjust as needed */
+  bottom: 180px;  /* Adjust as needed */
+  z-index: 10;  /* Above the map */
+  padding: 10px;
+}
+
+.circleContainer {
+  position: absolute;
+  top: -20px;  /* Places circle above rectangle */
+  right: -20px;
+  width: 73px;
+  height: 73px;
+  background: #03081F;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.circleImage {
+  width: 45px;
+  height: 45px;
+}
+
+.rectangleText {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #03081F;
+  text-align: left;
+}
+
+
+
+.similarRestaurants {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 50px 60px 50px 100px;
+  box-sizing: border-box;
+}
+
+.similarRestaurants h2 {
+  color: #000000;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 35px;
+}
+
+.restaurantList {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}

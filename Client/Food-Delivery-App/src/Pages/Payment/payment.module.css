@@ -1,0 +1,173 @@
+.container{
+    padding: 0 90px;
+}
+.mainContent {
+    display: flex;
+    height: 100vh;
+    gap: 20px;
+    box-sizing: border-box;
+    align-items: flex-start;
+}
+
+.leftSide {
+    flex: 3;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.iconTextRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #000000;
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.iconTextRow i {
+    font-size: 24px;
+}
+
+.cardsList {
+    margin-top: 0;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.wallet {
+    padding: 10px;
+    border-radius: 50px;
+    border: 1px solid #FFE8CE;
+    display: flex;
+    gap: 20px;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #FFE8CE; 
+    box-shadow: 0px 8px 20px 0px #56585C1F;
+    border: 1px solid #2D3748;
+    position: relative; /* Make the circle a positioning context */
+}
+
+.walletImage {
+    width: 20px; /* Adjust to your image size */
+    height: 20px; /* Adjust to your image size */
+    position: absolute; /* Position the image absolutely inside the circle */
+    top: 50%; /* Move the image to the vertical center */
+    left: 50%; /* Move the image to the horizontal center */
+    transform: translate(-50%, -50%); /* Adjust the image to perfectly center */
+}
+
+.walletText {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000; /* Example color */
+}
+.walletBalance{
+    font-size: 12px;
+    color: #83858A; /* Example color */
+}
+.balanceText {
+    font-size: 12px;
+    color: #83858A; /* Example color */
+}
+.divider{
+    border: 1px solid #000000;
+    margin:20px 0;
+    width: 100%;
+    height: 0;
+}
+.cards {
+    padding: 10px;
+    border-radius: 50px;
+    border: 1px solid #FFE8CE;
+    display: flex;
+    gap: 20px;
+}
+
+.addCard {
+    display: flex; /* Enable flexbox to align children */
+    align-items: center; /* Vertically center the icon and text */
+    gap: 10px; /* Space between the icon and the text */
+    padding: 0 15px;
+    cursor: pointer; /* Optional: Add a pointer cursor */
+    font-size: 16px; /* Optional: Adjust the font size */
+}
+
+.addCard i {
+    font-size: 18px; /* Adjust icon size */
+    color: #000; /* Optional: Icon color */
+    margin: 0; /* Remove unnecessary margin */
+}
+
+.addCard span {
+    color: #000; /* Optional: Text color */
+}
+
+.rightSide {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.amountPayment {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center align the content */
+    padding: 16px; /* Add padding for better spacing */
+    border: 1px solid #000000;
+    border-radius: 10px;
+    background-color: #fff;
+    gap: 4px; /* Space between rows */
+    margin-top: 20px;
+}
+
+.amount {
+    font-size: 18px;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Allow spanning across the container */
+    color: #83858A;
+}
+
+.amount b {
+    font-size: 18px;
+    color: #000000; /* Optional: Add color to the amount */
+    font-weight: 700;
+}
+
+.proceedButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    background-color: #FC8A06;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+ 
+}
+
+.proceedButton:hover {
+    background-color: #e67e00;
+}
+.footer {
+    margin-top: auto;
+    
+  }

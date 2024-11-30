@@ -1,0 +1,239 @@
+.footerContainer {
+    display: flex;
+    flex-wrap: wrap; /* Ensure columns wrap on smaller screens */
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #D9D9D9;
+    opacity: 0.9;
+}
+
+.column1 {
+    flex: 1 1 20%; 
+    margin-right: 20px;
+    padding: 40px 0 0 50px;
+}
+.column {
+    flex: 1 1 20%; 
+    padding: 40px 0 0 50px;
+    margin-right: 20px;
+}
+.column2 {
+    padding: 40px 30px 0 50px;
+    margin-right: 20px;
+}
+
+
+.column:last-child, .column2:last-child {
+    margin-right: 0;
+}
+
+.footerImage {
+    width: 45%;
+    height: auto;
+    margin-bottom: 10px;
+    display: block; /* Ensures it behaves like a block element */
+}
+
+.badges {
+    max-width: 65%;
+    margin-top: 20px;
+    display: block; /* Ensures it behaves like a block element */
+}
+
+.registration {
+    font-size: 12px;
+    color: #000000;
+    margin-top: 20px;
+    font-weight: 400;
+}
+
+.deals {
+    color: #03081F;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.subscribeSection {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+}
+
+.emailInput {
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 13px;
+    border: 1px solid #cccccc;
+    border-radius: 50px;
+    outline: none;
+    box-sizing: border-box;
+    background-color: #D9D9D9;
+    margin-right: -10px;
+    color: #000000;
+}
+.emailInput::placeholder {
+    color: #00000099;
+    font-size: 13px;
+    padding-left: 10px;
+}
+
+.subscribeButton {
+    width: 35%;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    background-color: #FC8A06;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-left: -30px; /* Negative margin to pull button and input closer */
+}
+
+.subscribeButton:hover {
+    background-color: #FC8A06;
+}
+
+.emailPolicy {
+    font-size: 10px;
+    font-weight: 400;
+    margin: 5px 20px;
+    color: #03081F;
+}
+.underline{
+    text-decoration: underline;
+}
+.iconWrapper {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 15px 20px;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.legalTitle, .linkTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #03081F;
+    margin-bottom: 5px;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin-top: 0; /* Ensure no extra space between the title and the list */
+}
+
+.list li {
+    font-size: 12px;
+    color: #000000;
+    margin-bottom: 10px; /* Space between list items remains */
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Bottom Row Section */
+.bottomRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+    background-color: #03081F;
+    border-top: 1px solid #ddd;
+    font-size: 12px;
+    color: #fff;
+}
+
+.bottomRow .links {
+    display: flex;
+    gap: 40px;
+}
+
+.links span {
+    cursor: pointer;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .footerContainer {
+        padding: 40px 30px 0 30px;
+    }
+
+    .column1, .column, .column2 {
+        flex: 1 1 100%; /* Stacks columns when screen is small */
+        padding: 10px 0 20px 0;
+        margin-right: 0;
+    }
+
+    .footerImage {
+        width: 60%; /* Adjusts logo size for smaller screens */
+        align-self: center;
+        display: block; /* Ensures it's treated as a block element */
+        margin: 0 auto; /* Centers the image horizontally */
+    }
+
+    .badges {
+        max-width: 90%;
+        align-self: center;
+        display: block; /* Ensures it's treated as a block element */
+        margin: 20px auto; /* Centers the image horizontally */
+    }
+    .registration{
+        text-align: center;
+
+    }
+
+    .subscribeSection {
+        max-width: 100%;
+        margin-top: 20px;
+        justify-content: center;
+    }
+
+    .emailInput {
+        flex: 2;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .subscribeButton {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+
+    .iconWrapper {
+        justify-content: center; /* Centers icons on mobile */
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .bottomRow {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        padding: 20px;
+    }
+
+    .link {
+        display: none; /* Hide the links on mobile */
+    }
+
+    .copyright {
+        text-align: center;
+        display: block; /* Ensure copyright text is displayed */
+    }
+
+    .emailPolicy{
+        text-align: center;
+        margin-top: 10px;
+    }
+    .deals{
+        margin-top: 20px;
+    }
+}

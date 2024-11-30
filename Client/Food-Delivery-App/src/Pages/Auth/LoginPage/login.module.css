@@ -1,0 +1,150 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.leftSection,
+.rightSection {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    height: 100%;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.formContainer {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.logoContainer {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    width: 170px;
+    height: 43px;
+}
+
+.titleContainer {
+    margin-bottom: 30px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0c1421;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #313957;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+.inputGroup {
+    margin-bottom: 15px;
+}
+
+.label {
+    font-size: 14px;
+    color: #0c1421;
+    margin-bottom: 5px;
+}
+
+.input {
+    width: 100%;
+    padding: 13px;
+    font-size: 14px;
+    border: 1px solid #00000066;
+    border-radius: 50px;
+    box-sizing: border-box;
+    text-indent: 0; 
+}
+
+.input::placeholder {
+    color: #8897ad;
+    font-size: 14px;
+    padding-left: 0;
+}
+
+.error {
+    color: red;
+    font-size: 0.7rem;
+}
+
+.forgotPassword {
+    font-size: 12px;
+    color: #fc8a06;
+    text-align: right;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #fc8a06;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.button:hover {
+    background-color: #cc7a00;
+}
+
+.signUp {
+    font-size: 12px;
+    color: #313957;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signUp span {
+    color: #ff9900;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+        padding: 20px 10px;
+        height: auto;
+    }
+
+    .rightSection {
+        display: none;
+    }
+
+    .leftSection {
+        width: 100%;
+    }
+
+    .image {
+        display: none;
+    }
+}

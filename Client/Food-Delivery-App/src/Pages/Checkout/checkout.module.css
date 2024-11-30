@@ -1,0 +1,343 @@
+.mainContent {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-start; /* Ensure both sections start at the top */
+  gap: 10px; /* Space between left and right sides */
+}
+.container {
+  padding: 0 90px;
+}
+
+.leftSide,
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  height: 100%; /* Ensure they stretch to the same height */
+  box-sizing: border-box; /* Include padding in height */
+}
+
+.leftSide {
+  flex: 3; /* Adjust width ratio */
+}
+
+.rightSide {
+  flex: 2;
+  align-self: stretch; /* Stretch the right side to match the left */
+}
+
+/* Ensure .orderList and .addressCard fill their containers */
+.orderList {
+  flex-grow: 1; /* Takes up available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Adjust as needed */
+}
+
+.addressCard {
+  flex-grow: 1; /* Makes addressCard fill its container */
+  display: flex;
+  align-items: center;
+}
+
+/* Icon and Text Row */
+.iconTextRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #000000;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.iconTextRow i {
+  font-size: 24px;
+}
+.orderList {
+  margin-top: 0; /* Remove margin if needed for alignment */
+  border: 1px solid #03081f;
+  border-radius: 10px;
+  padding: 20px;
+}
+.orderItem {
+  display: flex;
+  align-items: center; /* Vertically center the content */
+  justify-content: space-between; /* Push price to the right */
+  padding: 10px 0;
+  border-bottom: 1px solid #202938;
+}
+
+/* Left Side Content */
+.orderItemLeft {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Styling for the image */
+.orderItem img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Styling for the text container */
+.orderItemText {
+  display: flex;
+  flex-direction: column; /* Stack name and quantity vertically */
+}
+
+/* Styling for item name and quantity */
+.itemName {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  color: #03081f;
+}
+
+.itemQuantity {
+  color: #83858a;
+  margin: 0;
+  font-size: 11px;
+}
+
+/* Styling for the price */
+.itemPrice {
+  font-weight: bold;
+  color: green;
+  margin: 0;
+}
+
+.orderItem {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.orderItem img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+}
+
+/* Notes Section */
+.notes {
+  margin-top: 20px;
+  font-size: 11px;
+}
+
+.notes input {
+  width: 100%; /* Decreased width to 80% of the container */
+  padding: 10px 16px; /* Same padding */
+  gap: 4px;
+  border-radius: 50px;
+  border: 1px solid #202938;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+  margin: 5px auto; /* Centers the textarea horizontally */
+}
+
+/* Right Side Styling */
+.rightSide {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center; /* Ensure vertical alignment with left side */
+  padding-top: 60px;
+}
+/* Address Card */
+.addressCard {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 40px;
+  background-color: #fff;
+  gap: 10px;
+}
+
+/* Circle with location icon */
+.iconCircle {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  color: #18848e;
+  font-size: 18px;
+}
+
+/* Address details */
+.addressText {
+  display: flex;
+  flex-direction: column;
+}
+
+.addressText h4 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000000;
+}
+
+.addressText p {
+  margin: 4px 0 0;
+  font-size: 11px;
+  color: #83858a;
+}
+
+/* Summary Section */
+.summary {
+  background-color: #fff;
+  border-top: 1px solid #202938;
+  border-bottom: 1px solid #202938;
+  color: #83858a;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+.totalAmount {
+  display: flex;
+  justify-content: space-between;
+  gap: 0;
+  margin-bottom: 30px;
+}
+/* Payment Button */
+.paymentButton {
+  padding: 15px;
+  background-color: orange;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 100%;
+}
+.restaurantSection {
+  margin: 50px 0; /* Adds space between main content and similar restaurants */
+  width: 100%;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.popularRestaurantTitle {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  margin-left: 20px;
+}
+/* Ensure the layout is responsive */
+/* General mobile styling */
+@media (max-width: 768px) {
+  .PromoHeader {
+    display: none; /* Hide banner for mobile */
+  }
+
+  .container {
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  .mainContent {
+    flex-direction: column; /* Stack left and right sides */
+    gap: 20px; /* Add spacing between sections */
+  }
+
+  .leftSide,
+  .rightSide {
+    width: 100%; /* Make sections full width */
+    padding: 15px; /* Add consistent padding */
+  }
+
+  .leftSide {
+    order: 1; /* Show left side first */
+  }
+
+  .rightSide {
+    order: 2; /* Show right side below the left */
+  }
+
+  .iconTextRow {
+    font-size: 16px; /* Reduce font size */
+    gap: 5px; /* Reduce spacing */
+  }
+
+  .iconTextRow i {
+    font-size: 20px; /* Adjust icon size */
+  }
+
+  .orderItem img {
+    width: 40px; /* Reduce image size */
+    height: 40px;
+  }
+
+  .itemName {
+    font-size: 12px; /* Adjust font size */
+  }
+
+  .itemQuantity {
+    font-size: 10px; /* Adjust font size */
+  }
+
+  .itemPrice {
+    font-size: 14px; /* Adjust font size */
+  }
+
+  .notes input {
+    font-size: 12px; /* Reduce font size for input */
+    padding: 8px; /* Adjust padding */
+  }
+
+  .addressCard {
+    flex-direction: column; /* Stack icon and text */
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .iconCircle {
+    width: 30px; /* Adjust icon circle size */
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .addressText h4 {
+    font-size: 12px; /* Adjust font size */
+  }
+
+  .addressText p {
+    font-size: 10px; /* Adjust font size */
+  }
+
+  .summaryRow span {
+    font-size: 12px; /* Adjust summary text size */
+  }
+
+  .totalAmount {
+    font-size: 14px; /* Adjust total amount text size */
+  }
+
+  .paymentButton {
+    font-size: 14px; /* Adjust button text size */
+    padding: 12px; /* Adjust button padding */
+  }
+
+  .restaurantSection {
+    margin: 30px 0; /* Reduce spacing */
+  }
+
+  .popularRestaurantTitle {
+    font-size: 18px; /* Adjust title size */
+    margin-left: 10px;
+  }
+}

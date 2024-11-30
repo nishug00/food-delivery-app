@@ -1,0 +1,249 @@
+.cardContainer {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  gap: 15px; /* Space between each card */
+  flex-wrap: wrap; /* Allow items to wrap if space is insufficient */
+}
+.cardContainer {
+  display: flex;
+  padding: 20px 0;
+  gap: 16px; 
+}
+
+.cardList {
+  display: flex;
+  gap: 15px; /* Space between each card */
+}
+.addCard {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #fff;
+    cursor: pointer;
+    width: 200px; 
+    justify-content: space-between; 
+    gap: 10px;
+  }
+.getCards {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #fff;
+    cursor: pointer;
+    width: 300px; /* Adjust width as needed */
+    justify-content: space-between; /* Space between icon and content */
+    gap: 10px;
+  }
+  
+.circle {
+  width: 40px;
+  height: 40px;
+  background-color: #ff9800;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1; /* Take remaining space */
+  }
+
+.cardNumber {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.cardHolderName {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.addCard,
+.card {
+  gap: 16px;
+  border-radius: 10px;
+  border: 0.5px solid #00000080;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  opacity: 1; 
+  background-color: #fff; 
+  padding: 10px;
+}
+
+.addCard .circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the icon inside the circle */
+  font-size: 24px;
+  background-color: rgba(252, 138, 6, 0.1); /* Background with opacity */
+  opacity: 1; /* Ensure the circle itself is not transparent */
+  color: #fc8a06;
+}
+
+.addCard .circle .codicon {
+  font-size: 24px; /* Adjust icon size */
+  color: inherit; /* Inherit the color from the parent circle */
+}
+.getCards .circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the icon inside the circle */
+  font-size: 24px;
+  background-color: rgba(252, 138, 6, 0.1); /* Background with opacity */
+  opacity: 1; /* Ensure the circle itself is not transparent */
+  color: #fc8a06;
+}
+
+.getCards .circle .codicon {
+  font-size: 24px; /* Adjust icon size */
+  color: inherit; /* Inherit the color from the parent circle */
+}
+
+.addCardText {
+  font-size: 16px;
+}
+
+.cardDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .editIcon {
+    font-size: 18px;
+    color: #000; /* Color for the edit icon */
+    cursor: pointer;
+  }
+
+/* Modal Overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.modalContent {
+  background: white;
+  border-radius: 10px;
+  width: 40%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+/* Modal Title */
+.modalTitle {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #000;
+  padding: 15px 15px 0 15px;
+}
+
+/* Modal Body */
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 15px; /* Space between each row */
+}
+
+/* Input Group: Label and Field in a Row */
+.inputGroup {
+  display: flex;
+  align-items: center; /* Vertically align label and input */
+  justify-content: space-between; /* Push label and input to opposite ends */
+  gap: 10px; /* Space between label and input */
+}
+
+/* Label */
+.label {
+  font-size: 14px;
+  font-weight: 400;
+  width: 20%; /* Set label width */
+  text-align: left;
+  color: #000;
+}
+
+/* Input Field */
+.inputField {
+  width: 80%; /* Set input width */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  color: #888;
+}
+
+/* Ensure full width for buttonContainer */
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 10px 10px 15px;
+  background-color: #fc8a06;
+}
+
+/* Fix the Remove button alignment */
+.removeButton {
+  background-color: #663700; /* Brown */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  flex-shrink: 0; /* Prevent it from shrinking */
+  width: 100px;
+  height: 45px;
+  border-radius: 8px;
+}
+
+/* Right buttons container - ensures they are in one row with space between */
+.rightButtons {
+  display: flex;
+  gap: 10px; /* Space between Cancel and Save Changes buttons */
+  justify-content: flex-end; /* Align right buttons to the right */
+}
+
+.cancelButton,
+.saveButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.cancelButton {
+  color: #fff;
+  background-color: transparent;
+}
+
+.saveButton {
+  color: #000;
+  background-color: #fff;
+  width: 130px;
+  height: 45px;
+}
