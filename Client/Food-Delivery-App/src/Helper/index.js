@@ -4,12 +4,10 @@ import toast from "react-hot-toast";
 
 export function addTokenToHeader({ headers }) {
     const token = localStorage.getItem("token");
-    console.log('token in helper', token);
     if (token) {
         headers.Authorization = `Bearer ${token}`;
 
     }
-    console.log('headers', headers);
     return headers;
 }
 
@@ -24,12 +22,10 @@ export const fetchWithHandler = async (url, method, data) => {
             headers,
             body: JSON.stringify(data),
         });
-        console.log('response', response);
 
         const responseData = await response.json();
         return handleApiResponse({ response, data: responseData });
     } catch (error) {
-        console.error("API Error:", error.message);
         toast.error("Network error, please try again");
         throw error;
     }
@@ -39,8 +35,6 @@ export function handleApiResponse(res) {
     switch (res.response.status) {
       case 401:
         localStorage.removeItem("token");
-        // toast.error("You're logged out");
-        // window.location.href = "/";
         return null;
       case 400:
         toast.error("Unexpected error occurred. Please try again.");

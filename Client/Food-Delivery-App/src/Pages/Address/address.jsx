@@ -9,6 +9,7 @@ import { saveAddress, fetchUserAddresses, updateAddress, deleteAddress } from '.
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../Context/AppContext';
 import toast from "react-hot-toast"; 
+
 const Address = () => {
   const [formData, setFormData] = useState({
     state: '',
@@ -26,81 +27,71 @@ const Address = () => {
   const { user } = useAppContext();
 
   useEffect(() => {
-    const loadAddresses = async () => {
-      try {
-        const data = await fetchUserAddresses(token);
-        setAddresses(data);
-      } catch {
-        console.error('Failed to fetch addresses');
-      }
-    };
-
-    if (token) loadAddresses();
+    if (token) {
+      const loadAddresses = async () => {
+        try {
+          const data = await fetchUserAddresses(token);
+          setAddresses(data);
+        } catch {
+          toast.error('Failed to fetch addresses');
+        }
+      };
+      loadAddresses();
+    }
   }, [token]);
 
   const handleFormChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
- 
-    // Form validation errors
+    
     const errors = {};
     if (!formData.state) errors.state = 'State is required';
     if (!formData.city) errors.city = 'City/District is required';
     if (!formData.pincode) errors.pincode = 'Pincode is required';
     if (!formData.phoneNumber) errors.phoneNumber = 'Phone number is required';
     if (!formData.fullAddress) errors.fullAddress = 'Full address is required';
+    
     if (Object.keys(errors).length > 0) {
-        toast.error("Please fill all required fields.");  // Validation error toast
+        toast.error("Please fill all required fields.");
         return;
     }
- 
+    
     setIsLoading(true);
     try {
         let response;
-        console.log('response', response);
         if (isEditing) {
             response = await updateAddress(formData, token, user.id); 
         } else {
             response = await saveAddress(formData, token, user.id);
         }
- 
-        // Check if the operation was successful
+
         if (response?.address) {
-            if (isEditing) {
-                setAddresses((prev) =>
-                    prev.map((addr) =>
+            setAddresses((prevAddresses) => {
+                if (isEditing) {
+                    return prevAddresses.map((addr) =>
                         addr.id === response.address.id ? response.address : addr
-                    )
-                );
-                toast.success("Address updated successfully!");  // Success toast for editing
-            } else {
-                setAddresses((prev) => [...prev, response.address]);
-                toast.success("Address added successfully!");  // Success toast for adding
-            }
+                    );
+                } else {
+                    return [...prevAddresses, response.address];
+                }
+            });
+
+            toast.success(isEditing ? "Address updated successfully!" : "Address added successfully!");
+            setIsModalOpen(false); // Close modal after success
+            setIsEditing(false); // Reset edit state
+            resetFormData(); // Reset form data
         }
- 
-        // Ensure modal closes after both saving and updating
-        setIsModalOpen(false);
-        setIsEditing(false);
-        setFormData({
-            state: '',
-            city: '',
-            pincode: '',
-            phoneNumber: '',
-            fullAddress: '',
-        })
     } catch (error) {
-        console.error('Error in address update or save:', error);
-        toast.error("Failed to save or update the address. Please try again!");  // Error toast
+        toast.error("Failed to save or update the address. Please try again!");
     } finally {
         setIsLoading(false);
     }
-  }; 
+};
+
+
   const handleEdit = (address) => {
     setIsEditing(true);
     setFormData({
@@ -117,21 +108,29 @@ const Address = () => {
   const handleRemove = async (addressId) => {
     try {
       await deleteAddress(addressId, token);
-      setAddresses((prevAddresses) => {
-        const updatedAddresses = prevAddresses.filter((address) => address._id !== addressId);
-        return updatedAddresses;
-      });
+      setAddresses((prevAddresses) => prevAddresses.filter((address) => address._id !== addressId));
+      toast.success('Address removed successfully');
     } catch (error) {
-      console.error('Failed to remove address', error);
+      toast.error('Failed to remove address');
     }
+  };
+
+  const resetFormData = () => {
+    setFormData({
+      state: '',
+      city: '',
+      pincode: '',
+      phoneNumber: '',
+      fullAddress: '',
+    });
   };
 
   return (
     <>
-  
-      <div className={styles.promoHeader}>  <PromoHeader /></div>
-        <NavBar />
-        <div className={styles.container}>
+    <div className={styles.mainContainer}>
+      <div className={styles.promoHeader}><PromoHeader /></div>
+      <NavBar />
+      <div className={styles.container}>
         <div className={styles.contentWrapper}>
           <div className={styles.header}>
             <i className="codicon codicon-arrow-left"></i>
@@ -146,13 +145,10 @@ const Address = () => {
             </div>
 
             <div className={styles.addressGrid}>
-              {addresses.map((address, index) => (
-                <div
-                  key={index}
-                  className={`${styles.addressCard} ${address.isDefault ? styles.defaultAddress : ''}`} // Conditional class for default address
-                >
+              {addresses.map((address) => (
+                <div key={address._id} className={`${styles.addressCard} ${address.isDefault ? styles.defaultAddress : ''}`}>
                   <div className={styles.addressHeader}>
-                  <span className={styles.userName}>{user ? user.name : 'Guest'}</span>
+                    <span className={styles.userName}>{user ? user.name : 'Guest'}</span>
                     {address.isDefault && <span className={styles.defaultLabel}>Default</span>}
                   </div>
                   <div className={styles.addressDetails}>
@@ -172,16 +168,14 @@ const Address = () => {
 
         </div>
       </div>
+      </div>
       <Footer />
+
       {isModalOpen && (
         <div className={styles.modalOverlay}>
           <div className={styles.modalContainer}>
             <div className={styles.modalHeader}>
-              <img
-                src={LocationIcon}
-                alt="Location"
-                className={styles.modalTitleIcon}
-              />
+              <img src={LocationIcon} alt="Location" className={styles.modalTitleIcon} />
               <div className={styles.modalTitle}>{isEditing ? 'Edit Address' : 'Add Address'}</div>
             </div>
             <form className={styles.form} onSubmit={handleFormSubmit}>
@@ -212,7 +206,6 @@ const Address = () => {
                     onChange={handleFormChange}
                     placeholder="City/District"
                   />
-              
                 </div>
                 <div className={styles.inputGroup}>
                   <input
@@ -223,7 +216,6 @@ const Address = () => {
                     onChange={handleFormChange}
                     placeholder="Pin Code"
                   />
-                
                 </div>
                 <div className={styles.inputGroup}>
                   <input
@@ -234,7 +226,6 @@ const Address = () => {
                     onChange={handleFormChange}
                     placeholder="Phone Number"
                   />
-                 
                 </div>
               </div>
 
@@ -247,7 +238,6 @@ const Address = () => {
                   onChange={handleFormChange}
                   placeholder="Enter Full Address"
                 />
-               
               </div>
 
               <div className={styles.buttonGroup}>
@@ -255,12 +245,12 @@ const Address = () => {
                   type="submit"
                   className={styles.saveButton}
                   disabled={isLoading}
+                  
                 >
-                  Save
+                  {isLoading ? 'Saving...' : 'Save'}
                 </button>
               </div>
             </form>
-
           </div>
         </div>
       )}

@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap; /* Ensure columns wrap on smaller screens */
     justify-content: space-between;
-    padding: 20px;
+    padding: 20px 20px 40px 20px;
     background-color: #D9D9D9;
     opacity: 0.9;
 }

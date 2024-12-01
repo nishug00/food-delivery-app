@@ -1,0 +1,144 @@
+.mainContainer {
+    padding: 50px 0 0 0;
+}
+
+.container {
+    background-color: #D9D9D9;
+    padding: 50px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for the container */
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.Header {
+    font-size: 35px; /* Larger font size for the header */
+    font-weight: 700;
+    color: #000;
+    margin-right: 50px; /* Add space between header and arrows */
+}
+
+.arrows {
+    display: flex;
+    gap: 20px;
+    align-items: center; /* Align arrows vertically with the header */
+}
+
+.leftArrow,
+.rightArrow {
+    font-size: 40px;
+    color: #FC8A06;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Smooth color transition for hover */
+}
+
+/* Disabled state for arrows */
+.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Scrollable card container */
+.cardWrapper {
+    display: flex;
+    overflow-x: hidden; /* Horizontal scroll enabled */
+    scroll-behavior: smooth; /* Smooth scrolling */
+    gap: 30px; /* Adds more space between cards */
+    width: 100%;
+    padding-bottom: 20px; /* Additional space at the bottom */
+}
+.card {
+    flex: 0 0 calc(33.33% - 30px); /* Display 3 cards at a time with adjusted gap */
+    background-color: #fff;
+    height: 250px; /* Adjust the card height */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to the top */
+    padding: 20px;
+    font-size: 16px;
+    font-weight: normal;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add smooth hover effect */
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.imageContainer {
+    margin-right: 15px; /* Space between image and text */
+}
+
+.reviewerImage {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #FC8A06; /* Border around the image */
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between .nameLocation and .stars */
+}
+
+.nameLocation {
+    display: flex;
+    flex-direction: column;
+}
+
+.stars {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name {
+    font-size: 20px; /* Slightly larger name font */
+    font-weight: bold;
+    color: #000;
+}
+
+.location {
+    font-size: 16px;
+    color: #FC8A06;
+    font-weight: normal;
+}
+
+.date {
+    font-size: 14px;
+    color: #777; /* Subtle gray for the date */
+    font-weight: normal;
+    margin-left: auto; /* Align date to the right */
+}
+
+.reviewText {
+    font-size: 16px; /* Slightly smaller font for the review text */
+    color: #000;
+    text-align:left;
+    line-height: 1.5;
+    margin-top: 30px; /* Push review text to the bottom */
+    font-weight: 400;
+}
+
+/* Mobile responsiveness: Adjust cards for smaller screens */
+@media (max-width: 768px) {
+    .card {
+        flex: 0 0 calc(50% - 30px); /* 2 cards per row for medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        flex: 0 0 calc(100% - 30px); /* 1 card per row for small screens */
+    }
+}

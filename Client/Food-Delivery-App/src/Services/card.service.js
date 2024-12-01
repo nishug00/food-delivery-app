@@ -13,12 +13,18 @@ export const saveCardDetails = async (cardData) => {
 
   export const getCards = async () => {
     try {
-      const response = await fetchWithHandler(`${BACKEND_URL}/api/card/get-cards`, 'GET');
-      return response;
-    } catch (error) {
-      console.error("Get Cards Error:", error.message);
-      throw error;
-    }
+      const response = await fetch('/api/cards'); // Make sure this endpoint is correct
+      if (!response.ok) {
+          const text = await response.text();  // Get raw response text
+          console.error('Error fetching cards:', text);
+          throw new Error('Failed to fetch cards');
+      }
+      const data = await response.json();
+      console.log('Fetched cards:', data);
+      setCards(data);
+  } catch (err) {
+      console.error('Error fetching cards:', err);
+  }
   };
   
 export const deleteCard = async (cardId) => {

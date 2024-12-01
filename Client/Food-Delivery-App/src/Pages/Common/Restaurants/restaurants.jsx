@@ -25,24 +25,27 @@ function Restaurants() {
   }, []);
 
   return (
-    <div className={styles.container}>
-      {restaurants.map((restaurant) => (
-        <div
-          key={restaurant._id}
-          className={styles.card}
-          onClick={() => handleCardClick(restaurant._id)}
-          role="button"
-          tabIndex={0}
-          style={{ cursor: 'pointer' }}
-        >
-          <img
-            src={restaurant.imageUrl.url}
-            alt={restaurant.name}
-            className={styles.image}
-          />
-          <p className={styles.name}>{restaurant.name}</p>
-        </div>
-      ))}
+    <div className={styles.restaurantWrapper}>
+      <div className={styles.popularRestaurantTitle}>Popular Restaurants</div>
+      <div className={styles.container}>
+        {restaurants.map((restaurant) => (
+          <div
+            key={restaurant._id}
+            className={styles.card}
+            onClick={() => handleCardClick(restaurant._id)}
+            role="button"
+            tabIndex={0}
+            style={{ cursor: 'pointer' }}
+          >
+            <img
+              src={restaurant.imageUrl.url}
+              alt={restaurant.name}
+              className={styles.image}
+            />
+            <p className={styles.name}>{restaurant.name}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

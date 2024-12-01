@@ -1,174 +1,179 @@
 .navContainer {
-    display: flex;
-    justify-content: space-between; /* Space between logo, menu, and user */
-    align-items: center;
-    width: 100%; 
-    padding: 40px 40px;
-    box-sizing: border-box;
+  display: flex;
+  justify-content: space-between; /* Space between logo, menu, and user */
+  align-items: center;
+  width: 100%;
+  padding: 40px 0;
+  box-sizing: border-box;
 }
-  .Options{
-    display: none;
-  }
-  .navMenuContainer {
-    display: flex;
-    justify-content: center;
-    flex: 1; /* Take up available space */
-    gap: 80px; /* Equal spacing between each menu item */
+.Options {
+  display: none;
+}
+.navMenuContainer {
+  display: flex;
+  justify-content: center;
+  flex: 1; /* Take up available space */
+  gap: 80px; /* Equal spacing between each menu item */
 }
 
 .navItemsWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 70px; /* Equal gaps between menu items */
-    flex: 1; /* Takes available space */
-    margin-left: 190px;
-}
-  
-  .orderImage {
-    width: 150px; /* Adjust size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 70px; /* Equal gaps between menu items */
+  flex: 1; /* Takes available space */
+  margin-left: 130px;
 }
 
-  
+.orderImage {
+  width: 150px; /* Adjust size */
+}
+
 .homeButton {
-    font-size: 14px;
-    font-weight: 500;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-    cursor: pointer;
-    width: 100px;
-    height: 35px;
-    transition: background-color 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 100px;
+  height: 35px;
+  transition: background-color 0.3s ease;
+
+}
+.restaurant {
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 130px;
+  height: 35px;
+  transition: background-color 0.3s ease;
+  color: #ffffff;
+
 }
 
-/* Styles when on the Home page */
 .homeActive {
-    background-color: #fc8a06;
-    color: white;
+  background-color: #fc8a06;
+  color: #ffffff;
+}
+.restaurantActive {
+  background-color: #fc8a06;
+  color: #ffffff;
 }
 
 /* Styles when on other pages */
 .homeInactive {
-    background-color: transparent;  /* No background */
-    color: #000000;              
+  background-color: transparent; /* No background */
+  color: #000000;
+}
+.restaurantInactive {
+  background-color: transparent; /* No background */
+  color: #000000;
 }
 
-.homeButton:hover {
-    background-color: #e58f06;
-    color: white;
-}
 
- 
-.homeButton,
 .specialOffers,
-.restaurant,
 .trackOrder {
-    font-size: 14px;
-    font-weight: 500;
-    color: #000000;
-    cursor: pointer;
-    transition: color 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
-.trackOrder{
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.trackOrder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .user {
-    background-color: #03081f;
-    padding: 10px 25px 10px 15px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #ffffff;
+  background-color: #03081f;
+  padding: 10px 25px 10px 15px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
 }
-  
-  .avatar {
-    display: flex;
-    align-items: center;
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 27px;
+  width: 27px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media screen and (max-width: 768px) {
+  .navContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 0 20px 0;
+  }
+
+  .orderImage {
+    width: 150px;
+  }
+
+  .navItemsWrapper {
+    flex-wrap: wrap;
     justify-content: center;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
-    overflow: hidden;
-  }
-  
-  .avatar img {
+    gap: 10px;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    margin: 10px 0;
   }
-  @media screen and (max-width: 768px) {
-    .navContainer {
-        flex-direction: column;
-        align-items: flex-start;
-        padding:  0 0 20px 0;
-     
-    }
 
-    .orderImage {
-        width: 150px;
-        
-    }
-
-    .navItemsWrapper {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    .homeButton,
-    .specialOffers,
-    .restaurant,
-    .trackOrder {
-        display: none;
-    }
-
-    .user {
+  .homeButton,
+  .specialOffers,
+  .restaurant,
+  .trackOrder {
     display: none;
-    }
-.Options{
+  }
+
+  .user {
+    display: none;
+  }
+  .Options {
     width: 50px;
     height: 50px;
     display: block;
-
-}
-.imageContainer {
+  }
+  .imageContainer {
     display: flex; /* Use flexbox to align items in a row */
     justify-content: space-between; /* Create space between the images */
     align-items: center; /* Vertically center the images */
     width: 100%; /* Ensure the container takes up full width */
-    border-bottom: 2px solid #0000004D; /* Add a bottom border with color */
-   
+    border-bottom: 2px solid #0000004d; /* Add a bottom border with color */
   }
-  
-.imageContainer {
-  display: flex; /* Use flexbox to align items in a row */
-  justify-content: space-between; /* Create space between the images */
-  align-items: center; /* Vertically center the images */
-  width: 100%; /* Ensure the container takes up full width */
-  border-bottom: 2px solid #0000004D; /* Add a bottom border with color */
-}
 
-.orderImage {
-  max-width: 100%; /* Prevent images from overflowing */
-  height: auto; /* Maintain aspect ratio */
-  margin-bottom: -2px; /* Align bottom border of the image with the container's bottom border */
-  padding: 30px 15px; /* Maintain padding for spacing */
-}
-
-.Options {
-  width: 70px;
-  height: 50px;
-  border-left: 2px solid #0000004D; /* Add left border with color */
-  padding:0 10px;
- 
-}
-
-  
+  .imageContainer {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%; 
+    border-bottom: 2px solid #0000004d; 
   }
+
+  .orderImage {
+    max-width: 100%; 
+    height: auto; 
+    margin-bottom: -2px;
+    padding: 30px 15px; 
+  }
+
+  .Options {
+    width: 70px;
+    height: 50px;
+    border-left: 2px solid #0000004d;
+    padding: 0 10px;
+  }
+}

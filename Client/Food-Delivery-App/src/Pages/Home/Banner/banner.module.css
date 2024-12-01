@@ -1,0 +1,279 @@
+.container {
+    display: flex;
+    padding: 0 0 0 20px;
+    background-color: #fbfbfb;
+    border: 1px solid #00000033;
+    border-radius: 10px;
+    width: 100%;
+    height: 450px;
+    position: relative;
+  }
+  
+  .Adwrapper {
+    display: flex;
+    max-width: 1700px;
+    width: 100%;
+  }
+  
+  .rightSide {
+    flex: 2;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    overflow: visible;
+  }
+  
+  .leftSide {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+  
+  .title {
+    font-size: 15px;
+    font-weight: 400;
+    color: #03081f;
+  }
+  
+  .subtitle {
+    font-size: 50px;
+    color: #03081f;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  
+  .subtitle span {
+    color: #fc8a06;
+  }
+  
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  
+  .inputLabel {
+    font-size: 11px;
+    color: #03081f;
+    font-weight: 400;
+  }
+  
+  .inputButtonContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+  }
+  .inputButtonContainer img{
+    display: none;
+  }
+  .inputText {
+    padding: 11px;
+    border-radius: 40px;
+    border: 1px solid #00000066;
+    width: 250px;
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  input::placeholder {
+    color: #000000cc;
+    padding: 10px;
+    font-size: 12px;
+  }
+  
+  .searchButton {
+    padding: 13px 40px;
+    background-color: #fc8a06;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+    margin-left: -45px;
+  }
+  
+  .girlwithPizza {
+    position: absolute;
+    top: 21px;
+    left: -110px;
+    z-index: 2;
+    width: 340px;
+    height: 427px;
+    object-fit: cover;
+  }
+  
+  .girlwithNoodles {
+    position: absolute;
+    top: 98px;
+    left: 170px;
+    z-index: 1;
+    max-width: 300px;
+    height: 350px;
+    border-radius: 10px 10px 0 0;
+    object-fit: cover;
+  }
+  
+  .background {
+    width: 500px;
+    height: 420px;
+    border-top-left-radius: 200px;
+    border-bottom-right-radius: 10px;
+    background-color: #fc8a06;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    position: absolute;
+    top: 28px;
+    right: 0;
+    z-index: 0;
+  }
+  
+  .notification1 {
+    position: absolute;
+    top: 90px;
+    right: 120px;
+    z-index: 2;
+    width: 300px;
+    height: 80px;
+    object-fit: cover;
+  }
+  
+  .notification2 {
+    position: absolute;
+    top: 220px;
+    right: 20px;
+    z-index: 2;
+    width: 300px;
+    height: 80px;
+    object-fit: cover;
+  }
+  
+  .notification3 {
+    position: absolute;
+    top: 350px;
+    right: 60px;
+    z-index: 2;
+    width: 300px;
+    height: 80px;
+    object-fit: cover;
+  }
+  
+  .textoutline1 {
+    position: absolute;
+    top: 30px;
+    right: 150px;
+    z-index: 2;
+    font-size: 56px;
+    font-weight: 600;
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff;
+  }
+  
+  .textoutline2 {
+    position: absolute;
+    top: 160px;
+    right: 50px;
+    z-index: 2;
+    font-size: 56px;
+    font-weight: 600;
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff;
+  }
+  
+  .textoutline3 {
+    position: absolute;
+    top: 290px;
+    right: 90px;
+    z-index: 2;
+    font-size: 56px;
+    font-weight: 600;
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      height: auto;
+      padding: 10px;
+      background-color: #03081F;
+    }
+  
+    .Adwrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .rightSide {
+      display: none; /* Hide the right side on mobile */
+    }
+  
+    .leftSide {
+      flex: 1;
+      align-items: center;
+      padding: 10px;
+      width: 100%; /* Ensure left side takes full width */
+    }
+  
+    .title {
+      font-size: 14px;
+      color:#ffffff
+    }
+  
+    .subtitle {
+      font-size: 30px;
+      text-align: center;
+      color:#ffffff
+    }
+    .inputLabel {
+        font-size: 11px;
+        color: #ffffff;
+        font-weight: 400;
+      }
+      
+    .inputGroup {
+      width: 100%;
+      align-items: center;
+    }
+  
+    .inputText {
+      width: 200px;
+    }
+  
+    .searchButton {
+        width: 40px;  /* Adjust the size for a circular button */
+        height: 40px; /* Same as width to make it circular */
+        background-color: #fc8a06;
+        color: #ffffff;
+        border: none;
+        border-radius: 50%; /* Make it circular */
+        cursor: pointer;
+        font-size: 0; /* Hide any text */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.3s ease;
+        padding: 0;
+      }
+
+      
+      /* OR, if you're using an image instead of FontAwesome, replace the above with: */
+      .leftIcon {
+        width: 20px; /* Set the icon size */
+        height: 20px;
+      }
+      
+  
+    /* Hide the right-side elements on mobile */
+    .girlwithPizza, .girlwithNoodles, .notification1, .notification2, .notification3, .background, .textoutline1, .textoutline2, .textoutline3 {
+      display: none;
+    }
+  }
+  

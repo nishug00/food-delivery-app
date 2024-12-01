@@ -3,13 +3,17 @@ import styles from './navBar.module.css';
 import orderImage from '../../../assets/orderImage.png';
 import avatar from '../../../assets/avatar.png';
 import { useAppContext } from '../../../Context/AppContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Options from '../../../assets/options.png';
 
-function navBar({ showBrowseMenu, currentPage }) {
-    const { user } = useAppContext(); // User from context
+function navBar({ currentPage }) {
+    const { user } = useAppContext();
     const username = user?.name || localStorage.getItem('username');
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const isHomePage = location.pathname === '/' || location.pathname === '/home';
+
     return (
         <div className={styles.navContainer}>
             <div className={styles.imageContainer}>
@@ -24,8 +28,17 @@ function navBar({ showBrowseMenu, currentPage }) {
                 >
                     Home
                 </button>
+                {isHomePage && (
+                    <div className={styles.browseMenu}>Browse Menu</div>
+                )}
                 <div className={styles.specialOffers}>Special Offers</div>
-                <div className={styles.restaurant}>Restaurants</div>
+                {/* <div className={styles.restaurant}>Restaurants</div> */}
+                <button
+                    className={`${styles.restaurant} ${currentPage === 'products' ? styles.restaurantActive : styles.restaurantInactive
+                        }`}
+                >
+                    Restaurants
+                </button>
                 <div className={styles.trackOrder}>Track Order</div>
             </div>
 

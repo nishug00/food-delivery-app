@@ -1,0 +1,105 @@
+.perksWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 20px 0;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .imageWrapper2 {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .perksImage {
+    width: 100%;
+    height: 360px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .imageWrapper2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(
+      245.7deg,
+      rgba(255, 255, 255, 0) 0.94%,
+      rgba(3, 8, 31, 0.19) 51.68%,
+      rgba(3, 8, 31, 0.89) 87.9%
+    );
+    pointer-events: none;
+  }
+  
+  .tagline {
+    position: absolute;
+    top: 0;
+    left: 55px;
+    width: 250px;
+    height: 45px;
+    background-color: #ffffff;
+    color: #03081f;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 0px 0px 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+  }
+  
+  .perksContainer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 0 40px 80px;
+    z-index: 4;
+  }
+  
+  .perkssignUp {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    color: #fc8a06;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .perksTitle {
+    font-size: 36px;
+    font-weight: 600;
+    text-align: left;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin: 0;
+  }
+  
+  .perksButton {
+    width: 60%;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    background-color: #fc8a06;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  .perksButton:hover {
+    background-color: #fc8a06;
+  }
+  

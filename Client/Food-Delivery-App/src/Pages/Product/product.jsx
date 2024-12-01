@@ -24,12 +24,11 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import locationPin from '../../assets/locationPin.png';
 import NavBar from '../Common/NavBar/navBar';
 import PromoHeader from '../Common/PromoHeader/promoHeader';
+import { useLocation } from 'react-router-dom';
+import MenuItems from './Menu/MenuItems';
+import Reviews from './CustomerReviews/Reviews';
 function Product() {
-    const [burgerMenu, setBurgerMenu] = useState([]);
-    const [friesMenu, setFriesMenu] = useState([]);
-    const [drinksMenu, setDrinksMenu] = useState([]);
-    const [reviews, setReviews] = useState([]);
-    const { handleAddItem } = useAppContext();
+
     const { cart } = useAppContext();
     const [isCartActive, setIsCartActive] = useState(false);
     const subtotal = cart.reduce((total, item) => total + (item.price * item.count), 0);
@@ -38,62 +37,22 @@ function Product() {
     const totalToPay = subtotal - discount + deliveryFee;
     const position = [51.505, -0.09];
     const { showCart } = useAppContext();
+    const location = useLocation();
 
     useEffect(() => {
-        const fetchBurgerMenu = async () => {
-            try {
-                const imageData = await fetchBurgerMenuFromService();
-                setBurgerMenu(imageData.data);
-                console.log(imageData.data);
-            } catch (error) {
-                console.error('Error while fetching images:', error);
-            }
-        };
-        fetchBurgerMenu();
-    }, []);
-    useEffect(() => {
-        const fetchFriesMenu = async () => {
-            try {
-                const imageData = await fetchFriesMenuFromService();
-                setFriesMenu(imageData.data);
-                console.log(imageData.data);
-            } catch (error) {
-                console.error('Error while fetching images:', error);
-            }
-        };
-        fetchFriesMenu();
-    }, []);
-    useEffect(() => {
-        const fetchDrinksMenu = async () => {
-            try {
-                const imageData = await fetchDrinksMenuFromService();
-                setDrinksMenu(imageData.data);
-                console.log(imageData.data);
-            } catch (error) {
-                console.error('Error while fetching images:', error);
-            }
-        };
-        fetchDrinksMenu();
-    }, []);
-    useEffect(() => {
-        const fetchReviews = async () => {
-            try {
-                const imageData = await fetchReviewsFromService();
-                console.log(imageData.data);
-                setReviews(imageData.data);
-                console.log(imageData.data);
-            } catch (error) {
-                console.error('Error while fetching reviews:', error);
-            }
-        };
-        fetchReviews();
-    }, []);
+        console.log('Attempting to scroll to top');
+        document.documentElement.scrollTop = 0; // For most modern browsers
+        document.body.scrollTop = 0;            // For older browsers
+    }, [location.pathname]);
+    // Trigger when route changes
+    const toggleCartVisibility = () => setCartVisible((prev) => !prev);
 
+    const [isCartVisible, setCartVisible] = useState(false);
     return (
         <>
             <div className={styles.pageContainer}>
-                <PromoHeader />
-          <NavBar/>
+                <PromoHeader isCartVisible={isCartVisible} toggleCartVisibility={toggleCartVisibility} />
+                <NavBar currentPage="products" />
                 <div className={styles.snackSection}>
                     <img src={snack} alt="Background Snack" className={styles.snackBackground} />
                     <div className={styles.snackDetails}>
@@ -140,10 +99,10 @@ function Product() {
                     <div> Orbit®</div>
                 </div>
             </div>
-
-            <div className={styles.pageContainer1}>
-                <div className={showCart ? styles.gridTwoColumns : styles.gridThreeColumns}>
-                    {/* First Discount Section */}
+            <MenuItems isCartVisible={isCartVisible} />
+            {/* <div className={styles.pageContainer1}> */}
+            {/* <div className={showCart ? styles.gridTwoColumns : styles.gridThreeColumns}>
+                    {/* First Discount Section *
                     <div className={styles.discountSection}>
                         <img src={DiscountImage1} alt="Discount Image" className={styles.discountImage} />
                         <div className={styles.discountTag}>-20%</div>
@@ -156,7 +115,7 @@ function Product() {
                         </div>
                     </div>
 
-                    {/* Second Discount Section */}
+                    {/* Second Discount Section 
                     <div className={styles.discountSection}>
                         <img src={DiscountImage2} alt="Discount Image" className={styles.discountImage} />
                         <div className={styles.discountTag}>-20%</div>
@@ -169,7 +128,7 @@ function Product() {
                         </div>
                     </div>
 
-                    {/* Third Discount Section */}
+                    {/* Third Discount Section *
                     <div className={styles.discountSection}>
                         <img src={DiscountImage3} alt="Discount Image" className={styles.discountImage} />
                         <div className={styles.discountTag}>-100%</div>
@@ -181,8 +140,8 @@ function Product() {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> */}
+            {/* </div> */}
 
             {/* <div className={`${styles.pageContainer1} ${showCart ? styles.withCart : ''}`}>
       {showCart && (
@@ -193,7 +152,7 @@ function Product() {
       </div> */}
             <div className={styles.pageContainer}>
 
-                <div className={styles.heading}>Burgers</div>
+                {/* <div className={styles.heading}>Burgers</div>
                 <div className={`${styles.burgerWrapper} ${showCart ? styles.twoColumnLayout : ''}`}>
                     {burgerMenu.map((burger, index) => (
                         <div key={index} className={styles.card}>
@@ -249,34 +208,9 @@ function Product() {
                             <img src={drinks.imageUrl.url} alt={drinks.name} className={styles.image} />
                         </div>
                     ))}
-                </div>
+                </div> */}
 
-                <div className={styles.locationWrapper}>
-                    {/* Map Container */}
-                    <MapContainer
-                        center={position}
-                        zoom={13}
-                        style={{ height: '400px', width: '100%' }}
-                    >
-                        <TileLayer
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        />
-                        <Marker position={position}>
-                            <Popup>A pretty popup. <br /> Easily customizable.</Popup>
-                        </Marker>
-                    </MapContainer>
-
-                    {/* Static Overlay */}
-                    <div className={styles.overlayContainer}>
-                        <div className={styles.rectangleContainer}>
-                            <div className={styles.rectangleText}>McDonald’s <br />South London</div>
-                            <div className={styles.circleContainer}>
-                                <img src={locationPin} alt="Icon" className={styles.circleImage} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              
 
 
                 <div className={styles.infoWrapper}>
@@ -329,7 +263,36 @@ function Product() {
 
 
                 </div>
+                <div className={styles.locationWrapper}>
+                    {/* Map Container */}
+                    <MapContainer
+                        center={position}
+                        zoom={13}
+                        style={{ height: '400px', width: '100%' }}
+                    >
+                        <TileLayer
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        />
+                        <Marker position={position}>
+                            <Popup>A pretty popup. <br /> Easily customizable.</Popup>
+                        </Marker>
+                    </MapContainer>
+
+                    {/* Static Overlay */}
+                    <div className={styles.overlayContainer}>
+                        <div className={styles.rectangleContainer}>
+                            <div className={styles.rectangleText}>McDonald’s <br />South London</div>
+                            <div className={styles.circleContainer}>
+                                <img src={locationPin} alt="Icon" className={styles.circleImage} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        
+
+                <Reviews />
 
             <div className={styles.similarRestaurants}>
                 <h2>Similar Restaurants</h2>

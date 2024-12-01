@@ -117,22 +117,20 @@ const updateCard = async () => {
 };
 
 
-    useEffect(() => {
-        const fetchCards = async () => {
-            try {
-                const cardData = await getCards(); // Fetch card data
-                setCards(cardData);
-                console.log('Fetched cards:', cardData);
-            } catch (err) {
-                setError('Failed to fetch card details'); // Set error if any
-                console.error('Error fetching cards:', err);
-            } finally {
-                setLoading(false); // Set loading to false after fetching is done
-            }
-        };
+useEffect(() => {
+    const fetchCards = async () => {
+        try {
+            const response = await fetch('/api/cards'); // Replace with your API call
+            const data = await response.json();
+            setCards(data || []); // Ensure it's an empty array if no data is returned
+        } catch (error) {
+            console.error("Error fetching cards:", error);
+            setCards([]); // Fallback to empty array if there's an error
+        }
+    };
 
-        fetchCards(); // Call the fetch function
-    }, []);
+    fetchCards();
+}, []);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -145,33 +143,33 @@ const updateCard = async () => {
     return (
         <>
             <div className={styles.cardContainer}>
-                {cards.length === 0 ? (
-                    <p>No cards found</p>
-                ) : (
-                    <div className={styles.cardList}>
-                        {cards.map((card, index) => (
-                            <div className={styles.getCards} key={index}>
-                                <div className={styles.circle}>
-                                    <span className="codicon codicon-credit-card"></span>
-                                </div>
-                                <div className={styles.cardInfo}>
-                                    <div className={styles.cardDetails}>
-                                        <div className={styles.cardNumber}>
-                                            <span>{`XXXXXXXXXXX${card.cardNumber.slice(-4)}`}</span>
-                                        </div>
-                                        <div className={styles.cardHolderName}>
-                                            <span>{card.nameOncard}</span>
-                                        </div>
-                                    </div>
-                                    <span
-                                        onClick={() => handleEdit(card)} // Trigger editing for this card
-                                        className={`codicon codicon-edit ${styles.editIcon}`}
-                                    ></span>
-                                </div>
+            {cards.length === 0 ? (
+                <p>No cards found</p>
+            ) : (
+                <div className={styles.cardList}>
+                    {cards.map((card, index) => (
+                        <div className={styles.getCards} key={index}>
+                            <div className={styles.circle}>
+                                <span className="codicon codicon-credit-card"></span>
                             </div>
-                        ))}
-                    </div>
-                )}
+                            <div className={styles.cardInfo}>
+                                <div className={styles.cardDetails}>
+                                    <div className={styles.cardNumber}>
+                                        <span>{`XXXXXXXXXXX${card.cardNumber.slice(-4)}`}</span>
+                                    </div>
+                                    <div className={styles.cardHolderName}>
+                                        <span>{card.nameOncard}</span>
+                                    </div>
+                                </div>
+                                <span
+                                    onClick={() => handleEdit(card)} // Trigger editing for this card
+                                    className={`codicon codicon-edit ${styles.editIcon}`}
+                                ></span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
                 {/* Add New Card Button */}
                 <div className={styles.addCard} onClick={() => openModal('add')}>
                     <div className={styles.circle}>

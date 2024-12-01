@@ -1,0 +1,112 @@
+.achievementsWrapper {
+    width: 100%;
+    border-radius: 10px;
+    background-color: #fc8a06;
+    margin: 50px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Default: 4 columns */
+    text-align: center;
+    align-items: center;
+    padding: 30px;
+    gap: 0;
+  }
+  .achievementItem {
+    font-size: 45px;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 20px;
+  }
+  
+  .achievementValue {
+    font-size: 45px;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  
+  .achievementLabel {
+    font-size: 20px;
+    font-weight: 700;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  /* Vertical borders between items */
+  .achievementsWrapper > div:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -35px;
+    width: 2px;
+    height: 100%;
+    background-color: #ffffff;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .achievementsWrapper {
+      grid-template-columns: 1fr; /* Single column */
+      padding: 20px;
+    }
+  
+    .achievementItem {
+      font-size: 36px;
+      border-right: none; /* Remove vertical borders */
+      border-bottom: none; /* Remove default horizontal borders */
+      position: relative;
+    }
+    
+  
+    .achievementItem:last-child {
+      border-bottom: none; /* Remove bottom border for the last item */
+    }
+  
+    .achievementValue {
+      font-size: 36px;
+      font-weight: 300;
+      margin-bottom: 0;
+        }
+  
+    .achievementLabel {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+  }
+  
+  /* For screens up to 480px */
+  @media screen and (max-width: 480px) {
+    .achievementsWrapper {
+      padding: 10px;
+    }
+  
+    .achievementItem {
+      font-size: 30px;
+      padding: 15px 0;
+      border-bottom: 1px solid #ffffff;
+    }
+  
+    .achievementItem:last-child {
+      border-bottom: none;
+    }
+  
+    .achievementValue {
+      font-size: 30px;
+      font-weight: 300;
+      margin-bottom: 0;
+    }
+  
+    .achievementLabel {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+  }

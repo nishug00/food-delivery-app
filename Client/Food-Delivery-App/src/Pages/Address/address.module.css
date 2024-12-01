@@ -1,10 +1,14 @@
 .container {
-  padding: 0 90px;
   min-height: 100vh;
   position: relative;
   padding-bottom: 60px;
 }
-
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 90px;
+}
 .header {
   display: flex;
   align-items: center;
@@ -12,10 +16,6 @@
   color: #000;
   font-size: 23px;
   font-weight: 600;
-}
-
-.headerIcon {
-  font-size: 24px;
 }
 
 .addressContainer {

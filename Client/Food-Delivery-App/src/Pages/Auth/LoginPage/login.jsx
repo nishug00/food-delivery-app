@@ -41,6 +41,7 @@ const Login = () => {
         try {
           setIsLoading(true);
           const response = await login(credentials);
+          console.log('Response:', response);
           
           if (response?.token) {
             localStorage.setItem('token', response.token);

@@ -55,8 +55,11 @@ const Profile = () => {
     const getUserDetails = async () => {
         try {
             console.log('Fetching user details...');
-            const userData = await fetchUserDetails();
+            const userData = await fetchUserDetails();  // Log the response here
             console.log('Fetched User Data:', userData);
+            if (!userData) {
+                throw new Error('User data is null or undefined');
+            }
             setUser(userData);
             setEditedName(userData.name || '');
             setEditedEmail(userData.email || '');
@@ -69,6 +72,7 @@ const Profile = () => {
             setLoading(false);
         }
     };
+    
 
     useEffect(() => {
         getUserDetails(); // Fetch user details when the component mounts
