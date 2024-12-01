@@ -5,6 +5,7 @@ import logoImage from '../../../assets/orderImage.png';
 import Footer from '../../Common/Footer/footer';
 import { register } from '../../../Services/auth.service';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -26,36 +27,47 @@ const Register = () => {
         e.preventDefault();
         setFormErrors({ email: null, name: null, phone: null, password: null });
         let hasErrors = false;
-
-        if (!formData.email.includes('@') || !formData.email.includes('.')) {
-            setFormErrors((prev) => ({ ...prev, email: 'Invalid email address' }));
-            hasErrors = true;
+      
+        if (!formData.email) {
+          setFormErrors((prev) => ({ ...prev, email: 'Email is required' }));
+          hasErrors = true;
+        } else if (!formData.email.includes('@') || !formData.email.includes('.')) {
+          setFormErrors((prev) => ({ ...prev, email: 'Invalid email address' }));
+          hasErrors = true;
         }
+      
         if (!formData.name) {
-            setFormErrors((prev) => ({ ...prev, name: 'Name is required' }));
-            hasErrors = true;
+          setFormErrors((prev) => ({ ...prev, name: 'Name is required' }));
+          hasErrors = true;
         }
-        if (!formData.phone || formData.phone.length < 10) {
-            setFormErrors((prev) => ({ ...prev, phone: 'Invalid phone number' }));
-            hasErrors = true;
+      
+        if (!formData.phone) {
+          setFormErrors((prev) => ({ ...prev, phone: 'Phone number is required' }));
+          hasErrors = true;
+        } else if (formData.phone.length < 10 || !/^\d{10}$/.test(formData.phone)) {
+          setFormErrors((prev) => ({ ...prev, phone: 'Invalid phone number' }));
+          hasErrors = true;
         }
+      
         if (!formData.password) {
-            setFormErrors((prev) => ({ ...prev, password: 'Password is required' }));
-            hasErrors = true;
+          setFormErrors((prev) => ({ ...prev, password: 'Password is required' }));
+          hasErrors = true;
         }
-
+      
         if (hasErrors) return;
-
+      
         try {
-            setLoading(true);
-            await register(formData);
-            setTimeout(() => navigate('/'), 1000);
+          setLoading(true);
+          await register(formData);
+          toast.success('Registration successful!');
+          setTimeout(() => navigate('/'), 1000);
         } catch (error) {
-            alert(error.message || 'Registration failed. Please try again.');
+          toast.error(error.message || 'Registration failed. Please try again.');
         } finally {
-            setLoading(false);
+          setLoading(false);
         }
-    };
+      };
+      
 
     return (
         <>

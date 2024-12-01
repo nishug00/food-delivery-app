@@ -5,6 +5,7 @@ import { login } from "../../../Services/auth.service";
 import Footer from "../../Common/Footer/footer";
 import mainImage from "../../../assets/MainPageImage.png";
 import logoImage from "../../../assets/OrderImage.png";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -22,37 +23,48 @@ const Login = () => {
         setErrors({ email: null, password: null });
         let hasError = false;
 
-        if (!credentials.email.includes("@") || !credentials.email.includes(".")) {
-            setErrors((prev) => ({ ...prev, email: "Invalid email format" }));
-            hasError = true;
+        if (!credentials.email) {
+          setErrors((prev) => ({ ...prev, email: 'Email is required' }));
+          hasError = true;
+        } else if (!credentials.email.includes('@') || !credentials.email.includes('.')) {
+          setErrors((prev) => ({ ...prev, email: 'Invalid email format' }));
+          hasError = true;
         }
+      
         if (!credentials.password) {
-            setErrors((prev) => ({ ...prev, password: "Password is required" }));
-            hasError = true;
+          setErrors((prev) => ({ ...prev, password: 'Password is required' }));
+          hasError = true;
         }
+      
         if (hasError) return;
-
+      
         try {
-            setIsLoading(true);
-            const response = await login(credentials);
-            if (response?.token) {
-                localStorage.setItem("token", response.token);
-                localStorage.setItem("userId", response.user.id);
-                localStorage.setItem("username", response.user.name);
-                localStorage.setItem("email", response.user.email);
-                localStorage.setItem("gender", response.user.gender);
-                localStorage.setItem("country", response.user.country);
-                navigate("/home");
-            }
-        } catch {
-            setErrors((prev) => ({
-                ...prev,
-                email: "Login failed. Check your credentials.",
-            }));
+          setIsLoading(true);
+          const response = await login(credentials);
+          
+          if (response?.token) {
+            localStorage.setItem('token', response.token);
+            localStorage.setItem('userId', response.user.id);
+            localStorage.setItem('username', response.user.name);
+            localStorage.setItem('email', response.user.email);
+            localStorage.setItem('gender', response.user.gender);
+            localStorage.setItem('country', response.user.country);
+
+            toast.success('Login successful!');
+            navigate('/home');
+          } else {
+            toast.error('Invalid Input');
+          }
+        } catch (error) {
+          setErrors((prev) => ({
+            ...prev,
+            email: 'Login failed. Check your credentials.',
+          }));
+          toast.error('Login failed. Check your credentials.');
         } finally {
-            setIsLoading(false);
+          setIsLoading(false);
         }
-    };
+      };
 
     return (
         <>

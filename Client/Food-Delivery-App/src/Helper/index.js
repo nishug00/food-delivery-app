@@ -43,7 +43,7 @@ export function handleApiResponse(res) {
         // window.location.href = "/";
         return null;
       case 400:
-        toast.error("Invalid input");
+        toast.error("Unexpected error occurred. Please try again.");
         return null;
       case 201:
         return res.data;
