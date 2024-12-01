@@ -106,13 +106,19 @@ const updateProfile = async (req, res) => {
 
 const getUserDetails = async (req, res) => {
   try {
-    const userId = req.user.id;
-    const user = await User.findById(userId);
-    res.status(200).json(user);
+      const userId = req.userId;  // Ensure this is populated
+      console.log('User ID:', userId);  // Log userId for debugging
+      const user = await User.findById(userId);
+      if (!user) {
+          return res.status(404).json({ message: "User not found" });
+      }
+      res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ message: "Internal Server Error" });
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
 
 module.exports = {
   signup,

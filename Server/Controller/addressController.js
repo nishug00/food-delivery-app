@@ -3,8 +3,7 @@ const Address = require('../schemas/address.schema');
 exports.addAddress = async (req, res) => {
     try {
         const { fullAddress, phoneNumber, state, city, pincode } = req.body;
-        const userId = req.userId; // Now, we access userId from req.userId
-        
+        const userId = req.userId; // Ensure this line correctly fetches the user ID from the request
         if (!userId) {
             return res.status(400).json({ message: "User ID not found in request" });
         }
