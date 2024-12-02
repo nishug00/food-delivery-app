@@ -2,6 +2,14 @@
 	padding: 0 90px 0 90px;
 }
 
+.popularRestaurantTitle {
+	font-size: 26px;
+	font-weight: 700;
+	margin-bottom: 30px;
+	margin-left: 30px;
+  }
+
+  
 @media screen and (max-width: 768px) {
 	.PageContainer {
 		padding: 0 20px 0 20px;

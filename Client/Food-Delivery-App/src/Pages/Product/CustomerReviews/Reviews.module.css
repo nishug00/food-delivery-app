@@ -69,8 +69,9 @@
 
 .cardHeader {
     display: flex;
-    align-items: center;
     margin-bottom: 10px;
+    align-items: flex-start; /* Align items to the top */
+    justify-content: space-between;
 }
 
 .imageContainer {
@@ -94,12 +95,14 @@
 .nameLocation {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .stars {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+     display: flex;
+    flex-direction: column; /* Stack the stars and date vertically */
+    align-items: flex-start; /* Align the stars and date to the left */
+    justify-content: center;
 }
 
 .name {

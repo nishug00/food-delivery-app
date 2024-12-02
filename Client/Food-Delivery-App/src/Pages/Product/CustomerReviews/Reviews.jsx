@@ -83,10 +83,10 @@ function Reviews() {
                                     <div className={styles.location}>{review.location}</div>
                                 </div>
                                 <div className={styles.stars}>
-                                <div>⭐⭐⭐⭐⭐</div>
-                                <div className={styles.date}>{review.reviewedDate}</div>
+                                    <div>⭐⭐⭐⭐⭐</div>
+                                    <div className={styles.date}>{review.reviewedDate}</div>
                                 </div>
-                                
+
                             </div>
                             <p className={styles.reviewText}>{review.review}</p>
                         </div>

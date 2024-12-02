@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import styles from './checkout.module.css';
-import { useAppContext } from '../../Context/AppContext'; // Import the AppContext hook
+import { useAppContext } from '../../Context/AppContext';
 import Footer from '../Common/Footer/footer';
 import PromoHeader from '../Common/PromoHeader/promoHeader';
 import Restaurants from '../Common/Restaurants/restaurants';
 import NavBar from '../Common/NavBar/navBar';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { fetchUserAddresses } from '../../Services/address.service';
 
 function Checkout() {
   const { cart } = useAppContext();
   const navigate = useNavigate();
-  const location = useLocation(); // To get the query parameters
+  const location = useLocation();
   const [cartData, setCartData] = useState(cart);
-
+  const [orderNotes, setOrderNotes] = useState('');
+  const [addresses, setAddresses] = useState([]);
+  const token = localStorage.getItem('token');
+  const [defaultAddress, setDefaultAddress] = useState(null);
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const encodedCartData = params.get('cartData');
@@ -21,8 +25,6 @@ function Checkout() {
     if (encodedCartData) {
       const decodedCartData = JSON.parse(decodeURIComponent(encodedCartData));
       setCartData(decodedCartData);
-      
-      // Clear sensitive data only if it's a shared session
       if (isSharedSession) {
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
@@ -34,36 +36,56 @@ function Checkout() {
     }
   }, []);
 
+
   const handlePaymentClick = () => {
     const token = localStorage.getItem('token');
-    
+
     if (!token) {
-      navigate('/');  // Redirect to login if no token
+      navigate('/');
     } else {
-      navigate('/payment');  // Navigate to payment if token is present
+      navigate('/payment');
     }
   };
 
+  useEffect(() => {
+    if (token) {
+      const loadAddresses = async () => {
+        try {
+          const data = await fetchUserAddresses(token);
+          setAddresses(data);
+          const defaultAddr = data.find(address => address.isDefault);
+          setDefaultAddress(defaultAddr);
+        } catch {
+          toast.error('Failed to fetch addresses');
+        }
+      };
+      loadAddresses();
+    }
+  }, [token]);
+
   return (
     <>
-
       <div className={styles.container}>
         <div className={styles.PromoHeader}><PromoHeader /></div>
         <NavBar />
-        {/* Main Content: Left and Right Sides */}
         <div className={styles.mainContent}>
           {/* Left Side */}
           <div className={styles.leftSide}>
             <div className={styles.iconTextRow}>
-              <i className="codicon codicon-arrow-left"></i>
+              <i
+                className="codicon codicon-arrow-left"
+                onClick={() => navigate(-1)}
+                style={{ cursor: 'pointer' }}
+              ></i>
               <div>Your Order Details</div>
+              <div>Checkout</div>
             </div>
             <div className={styles.orderList}>
               {cartData.map((item, index) => (
                 <div key={index} className={styles.orderItem}>
                   <div className={styles.orderItemLeft}>
                     <img
-                      src={item.imageUrl?.url || 'default-image-url.jpg'} 
+                      src={item.imageUrl?.url || 'default-image-url.jpg'}
                       alt={item.name}
                       className={styles.itemImage}
                     />
@@ -75,20 +97,41 @@ function Checkout() {
                   <p className={styles.itemPrice}>₹ {item.price * item.count}</p>
                 </div>
               ))}
+
+              <div className={styles.orderNotesHeader}>Notes</div>
+              <input
+                type="text"
+                value={orderNotes}
+                className={styles.orderNotes}
+                placeholder="Add order notes"
+              />
             </div>
           </div>
 
+
           {/* Right Side */}
           <div className={styles.rightSide}>
+            <div className={styles.addressCardHeader}>Delivery Address</div>
             <div className={styles.addressCard}>
               <div className={styles.iconCircle}>
                 <i className="codicon codicon-location"></i>
               </div>
-              <div className={styles.addressText} onClick={() => navigate('/address')}>
-                <h4>Delivery Address</h4>
-                <p>45, Green Street, Sector 12...</p>
+              <div className={styles.addressContainer}>
+                {defaultAddress ? (
+                  <div key={defaultAddress._id} className={styles.addressText} onClick={() => navigate('/address')}>
+                    <h4>Delivery Address</h4>
+                    
+                      <p>{defaultAddress.fullAddress},{defaultAddress.city}, {defaultAddress.state}</p>
+                    
+                  </div>
+                ) : (
+                  <p>No default address found.</p>
+                )}
               </div>
+
+
             </div>
+            <div className={styles.summaryHeader}>Order Summary</div>
             <div className={styles.summary}>
               <div className={styles.summaryRow}>
                 <span>Items</span>
@@ -113,7 +156,7 @@ function Checkout() {
           <Restaurants />
         </div>
       </div>
-      <Footer />
+      <div className={styles.footer}> <Footer /></div>
     </>
 
 

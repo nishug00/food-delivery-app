@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import styles from './card.module.css'
+import React, { useEffect, useState } from 'react';
+import styles from './card.module.css';
 import { getCards, saveCardDetails, updateCardDetails, deleteCard } from '../../../Services/card.service';
 import toast from 'react-hot-toast';
 
@@ -16,15 +16,15 @@ function Cards() {
     const [currentCard, setCurrentCard] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const token = localStorage.getItem('token');
-    
+
     const openModal = (mode, card = null) => {
         setModalMode(mode);
         if (mode === 'edit' && card) {
-            setCardNumber(card.cardNumber || ''); // Fallback to empty string if undefined or null
+            setCardNumber(card.cardNumber || '');
             setExpiryDate(card.expiryDate || '');
             setCVV(card.cvv || '');
             setNameOncard(card.nameOncard || '');
-            setCurrentCard(card); // Store current card for future reference
+            setCurrentCard(card);
         } else {
             setCardNumber('');
             setExpiryDate('');
@@ -34,121 +34,60 @@ function Cards() {
         setModalOpen(true);
     };
 
-
     const closeModal = () => {
         setModalOpen(false);
         setCurrentCard(null);
     };
 
     const handleSaveCard = async () => {
-        const cardData = {
-            cardNumber,
-            expiryDate,
-            cvv,
-            nameOncard,
-        };
+        const cardData = { cardNumber, expiryDate, cvv, nameOncard };
 
         try {
             if (modalMode === 'edit') {
-                // Update existing card
-
-                const updatedCard = await updateCardDetails(currentCard._id, {
-                    expiryDate,
-                    nameOncard,
-                });
-
+                const updatedCard = await updateCardDetails(currentCard._id, { expiryDate, nameOncard });
                 toast.success('Card updated successfully!');
-
-                // Update the card in the state
-                setCards((prevCards) =>
-                    prevCards.map((card) =>
-                        card._id === currentCard._id ? { ...card, ...updatedCard } : card
-                    )
-                );
+                setCards(prevCards => prevCards.map(card => card._id === currentCard._id ? { ...card, ...updatedCard } : card));
             } else {
-                // Create a new card
-                console.log('Card data:', cardData);
                 const newCard = await saveCardDetails(cardData);
-                console.log('New Card:', newCard);
-
-
                 toast.success('Card added successfully!');
-
-
-                // Add the new card to the state
-                setCards((prevCards) => [...prevCards, newCard]);
+                setCards(prevCards => [...prevCards, newCard]);
             }
-
-            closeModal(); // Close the modal after save or update
+            closeModal();
         } catch (error) {
-            console.error('Error saving card:', error);
-            alert('Failed to save card details');
+            toast.error('Failed to save card details');
         }
     };
 
     const handleEdit = (card) => {
         setIsEditing(true);
         setCurrentCard(card);
-        openModal('edit', card); // Pass the card to open modal for editing
+        openModal('edit', card);
     };
+
     const handleDelete = async (cardId) => {
-        if (!cardId) return; // Ensure cardId exists
+        if (!cardId) return;
         try {
             await deleteCard(cardId);
             toast.success('Card deleted successfully!');
+            setCards(prevCards => prevCards.filter(card => card._id !== cardId));
         } catch (error) {
             toast.error('Failed to delete card');
         }
     };
 
-
-    const updateCard = async () => {
-        const cardData = {
-            cardNumber,
-            expiryDate,
-            cvv,
-            nameOncard,
-        };
-        console.log('Card data:', cardData);
-        try {
-            await updateCardDetails(currentCard._id, cardData);
-            toast.success('Card details updated successfully!');
-            closeModal(); // Close modal after successful update
-        } catch (error) {
-            toast.error('Failed to update card details');
-        }
-    };
-
-
-    // useEffect(() => {
-    //     const fetchCards = async () => {
-    //       try {
-    //         const fetchedCards = await getCards();
-    //         setCards(fetchedCards);
-    //       } catch (err) {
-    //         console.error("Error fetching cards:", err);
-    //         setError("Failed to load cards."); // Optional: Set error state
-    //       }
-    //     };
-    
-    //     fetchCards();
-    //   }, []);
-
     useEffect(() => {
         if (token) {
-          const fetchCards = async () => {
-            try {
-              const data = await getCards(token);
-              setCards(data);
-            } catch {
-              toast.error('Failed to fetch cards');
-            }
-          };
-          fetchCards();
+            const fetchCards = async () => {
+                try {
+                    const data = await getCards(token);
+                    setCards(data);
+                } catch (error) {
+                    toast.error('Failed to fetch cards');
+                }
+            };
+            fetchCards();
         }
-      }, [token]);
-
-
+    }, [token]);
 
     return (
         <>
@@ -157,9 +96,8 @@ function Cards() {
                     <p>No cards found</p>
                 ) : (
                     <div className={styles.cardList}>
-                        {cards.map((card, index) => {
-                            if (!card) return null; // Skip rendering if card is null or undefined
-                            return (
+                        {cards.map((card, index) => (
+                            card ? (
                                 <div className={styles.getCards} key={index}>
                                     <div className={styles.circle}>
                                         <span className="codicon codicon-credit-card"></span>
@@ -174,17 +112,16 @@ function Cards() {
                                             </div>
                                         </div>
                                         <span
-                                            onClick={() => handleEdit(card)} // Trigger editing for this card
+                                            onClick={() => handleEdit(card)}
                                             className={`codicon codicon-edit ${styles.editIcon}`}
                                         ></span>
                                     </div>
                                 </div>
-                            );
-                        })}
+                            ) : null
+                        ))}
                     </div>
                 )}
 
-                {/* Add New Card Button */}
                 <div className={styles.addCard} onClick={() => openModal('add')}>
                     <div className={styles.circle}>
                         <span className="codicon codicon-add"></span>
@@ -192,10 +129,19 @@ function Cards() {
                     <div className={styles.addCardText}>Add New Card</div>
                 </div>
             </div>
+
             {isModalOpen && (
                 <div className={styles.modalOverlay}>
                     <div className={styles.modalContent}>
-                        <h2 className={styles.modalTitle}>   {modalMode === 'edit' ? 'Edit Payment Method' : 'Add Payment Method'}</h2>
+                        <div className={styles.modalTitleContainer}>
+                            <h2 className={styles.modalTitle}>
+                                {modalMode === 'edit' ? 'Edit Payment Method' : 'Add Payment Method'}
+                            </h2>
+                            <div className={styles.closeButton} onClick={closeModal}>
+                                <span className="codicon codicon-close"></span>
+                            </div>
+                        </div>
+
                         <div className={styles.modalBody}>
                             <div className={styles.inputGroup}>
                                 <label className={styles.label}>Card Number</label>
@@ -203,7 +149,7 @@ function Cards() {
                                     type="text"
                                     className={styles.inputField}
                                     value={cardNumber}
-                                    readOnly={modalMode === 'edit'} // Read-only in edit mode
+                                    readOnly={modalMode === 'edit'}
                                     onChange={(e) => setCardNumber(e.target.value)}
                                 />
                             </div>
@@ -224,7 +170,7 @@ function Cards() {
                                     type="text"
                                     className={styles.inputField}
                                     value={cvv}
-                                    readOnly={modalMode === 'edit'} // Read-only in edit mode
+                                    readOnly={modalMode === 'edit'}
                                     onChange={(e) => setCVV(e.target.value)}
                                 />
                             </div>
@@ -240,11 +186,10 @@ function Cards() {
                             </div>
                         </div>
 
-
-
-                        {/* Buttons */}
                         <div className={styles.buttonContainer}>
-                            <button className={styles.removeButton} onClick={() => handleDelete(currentCard._id)}>Remove</button>
+                            <button className={styles.removeButton} onClick={() => handleDelete(currentCard._id)}>
+                                Remove
+                            </button>
                             <div className={styles.rightButtons}>
                                 <button className={styles.cancelButton} onClick={closeModal}>Cancel</button>
                                 <button className={styles.saveButton} onClick={handleSaveCard}>Save Changes</button>
@@ -252,10 +197,9 @@ function Cards() {
                         </div>
                     </div>
                 </div>
-
             )}
         </>
-    )
+    );
 }
 
-export default Cards
+export default Cards;

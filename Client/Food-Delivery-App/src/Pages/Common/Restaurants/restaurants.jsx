@@ -26,7 +26,7 @@ function Restaurants() {
 
   return (
     <div className={styles.restaurantWrapper}>
-      <div className={styles.popularRestaurantTitle}>Popular Restaurants</div>
+     
       <div className={styles.container}>
         {restaurants.map((restaurant) => (
           <div

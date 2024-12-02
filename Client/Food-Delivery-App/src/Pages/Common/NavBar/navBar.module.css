@@ -117,7 +117,7 @@
   .navContainer {
     flex-direction: column;
     align-items: flex-start;
-    padding: 0 0 20px 0;
+    padding: 0 0 0 0;
   }
 
   .orderImage {
@@ -172,8 +172,9 @@
 
   .Options {
     width: 70px;
-    height: 50px;
+    height: 90px;
     border-left: 2px solid #0000004d;
-    padding: 0 10px;
-  }
+    padding-left: 10px; /* Adds gap between border-left and icon */
+}
+
 }

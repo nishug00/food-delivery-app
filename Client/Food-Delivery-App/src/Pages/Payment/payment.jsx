@@ -23,7 +23,7 @@ function payment() {
           <div className={styles.leftSide}>
             {/* Header */}
             <div className={styles.iconTextRow}>
-              <i className="codicon codicon-arrow-left" aria-hidden="true"></i>
+              <i className="codicon codicon-arrow-left" aria-hidden="true" onClick={() => navigate(-1)}></i>
               <div className={styles.pageTitle}>Choose and Pay</div>
             </div>
 

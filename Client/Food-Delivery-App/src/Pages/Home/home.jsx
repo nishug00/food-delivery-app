@@ -29,6 +29,7 @@ function Home() {
         <Banner />
         <Promotions />
         <PopularCategories />
+        <div className={styles.popularRestaurantTitle}>Popular Restaurants</div>
         <Restaurants />
         <AppAd />
         <Partnership />

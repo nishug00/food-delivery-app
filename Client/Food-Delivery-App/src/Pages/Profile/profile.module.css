@@ -1,59 +1,59 @@
-.container{
+.container {
     padding: 0 90px;
-}
-.mainContent {
+  }
+  
+  .mainContent {
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
+    flex-direction: column;
     width: 100%;
     align-items: flex-start;
-    gap: 10px; /* Add vertical spacing between rows */
-    padding:0 60px;
-}
-
-.iconTextRow {
+    gap: 10px;
+    padding: 0 60px;
+  }
+  
+  .iconTextRow {
     display: flex;
     align-items: center;
     gap: 10px;
     color: #000000;
     font-size: 23px;
     font-weight: 600;
-}
-
-.iconTextRow i {
+  }
+  
+  .iconTextRow i {
     font-size: 24px;
-}
-
-.profileContainer {
+  }
+  
+  .profileContainer {
     display: flex;
     align-items: center;
-    justify-content: space-between;  /* Add space between profile and button */
-    width: 100%;                     /* Full width to align items */
+    justify-content: space-between;
+    width: 100%;
     padding-top: 10px;
     box-sizing: border-box;
-}
-
-.profileDetails {
+  }
+  
+  .profileDetails {
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-.profileImage {
+  }
+  
+  .profileImage {
     width: 60px;
     height: 60px;
     border-radius: 50%;
     object-fit: cover;
-}
-
-
-.username {
+  }
+  
+  .username {
     font-size: 17px;
     font-weight: 500;
     color: #000000;
-}
-
-.editSaveButton {
-    background-color: #FF9800;  /* Match the "Edit" button color */
+  }
+  
+  .editSaveButton {
+    background-color: #FF9800;
     color: white;
     border: none;
     padding: 8px 16px;
@@ -62,55 +62,128 @@
     font-size: 14px;
     font-weight: 500;
     width: 100px;
-}
-.formContainer {
+  }
+  
+  .formContainer {
     display: flex;
-    justify-content: space-between; /* Create space between left and right sections */
-    gap: 20px; /* Space between sections */
+    justify-content: space-between;
+    gap: 20px;
     width: 100%;
     margin-top: 20px;
-}
-.leftSection,
-.rightSection {
+  }
+  
+  .leftSection,
+  .rightSection {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 48%; /* Each section takes up almost half of the container */
-}
-
-.inputField {
-    width: 100%; /* Ensures inputs fill their container */
+    width: 48%;
+  }
+  
+  .inputField {
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: #F9F9F9;
     color: #000000;
     font-size: 14px;
     outline: none;
-}
-
-.inputLabel {
+  }
+  
+  .inputLabel {
     font-size: 14px;
     font-weight: 400;
     color: #000000;
-}
-.divider{
+  }
+  
+  .divider {
     border: 1px solid #000000;
-    margin-top:20px;
+    margin-top: 20px;
     width: 100%;
     height: 0;
-}
-.PaymentMethodContainer {
+  }
+  
+  .PaymentMethodContainer {
     font-size: 24px;
     font-weight: 500;
     text-align: left;
     color: #000000;
     padding: 0 0 100px 0;
     width: 100%;
-}
+  }
+  
+  /* Media Queries for Mobile Devices */
+  @media (max-width: 768px) {
+    .PromoHeader{
+        display:none;
+    }
+    .container {
+      padding: 0 ; /* Reduced padding on mobile */
+    }
+  
+    .mainContent {
+      padding: 0 10px; /* Reduced padding on mobile */
+    }
+    .iconTextRow i {
+        font-size: 24px;
+        background-color: #FC8A06;
+        border-radius: 50%;
+        padding: 10px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    .iconTextRow {
+      font-size: 18px; /* Reduced font size */
+      gap: 8px;
+    }
+  
+    .profileContainer {
+      align-items: flex-start; /* Align items to the start */
+    }
+  
+    .profileImage {
+      width: 50px;
+      height: 50px; /* Adjust profile image size for mobile */
+    }
+  
+    .username {
+      font-size: 16px; /* Smaller font size for mobile */
+    }
+  
+    .editSaveButton {
+      width: 100px; /* Full width for mobile */
+      padding: 10px;
+    }
+  
+    .formContainer {
+      flex-direction: column; /* Stack left and right sections */
+      gap: 15px;
+    }
+  
+    .leftSection,
+    .rightSection {
+      width: 100%; /* Full width for both sections on mobile */
+    }
+  
+    .inputField {
+      font-size: 12px; /* Smaller input text size */
+    }
+  
+    .PaymentMethodContainer {
+      font-size: 20px; /* Reduced font size for mobile */
+      padding: 0 0 50px 0; /* Adjust padding */
+    }
+  
+    .divider {
+      margin-top: 15px; /* Reduced margin for mobile */
+    }
 
-/* Styles for Payment Method Container */
-
- 
-
+    .footer{
+        display: none;
+    }
+  }
+  
   

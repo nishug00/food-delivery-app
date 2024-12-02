@@ -104,57 +104,57 @@
 }
 .footer {
     width: 100%;
-    margin-top: 20px; /* Fixed gap between orderContainer and footer */
+    margin-top: 20px;
   }
   
-@media (max-width: 768px) {
-  .container {
-    padding: 20px;
+  @media (max-width: 768px) {
+    .container {
+      padding: 0;
+    }
+    .promoHeader {
+      display: none;
+    }
+    .orderContainer {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* Aligns content to the top */
+      width: 100%;
+    }
+    .successIcon {
+      width: 150px;
+      height: 150px;
+    }
+    .iconWrapper {
+      width: 100px; /* Fixed typo from "1-0px" to "100px" */
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #32b6381f;
+      box-shadow: 0px 4px 10px rgba(50, 182, 56, 0.12);
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+    .footer {
+      display: none;
+    }
+    .orderConfirmationTitle {
+      font-size: 16px;
+    }
+  
+    .orderConfirmationMessage {
+      font-size: 12px;
+    }
+  
+    .orderItemsList {
+      padding: 10px;
+    }
+  
+    .backButton {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
   }
-  .promoHeader {
-    display: none;
-  }
-  .orderContainer {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-  .successIcon {
-    width: 150px;
-    height: 150px;
-    
-  }
-  .iconWrapper{
-    width: 1-0px;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #32b6381f;
-    box-shadow: 0px 4px 10px rgba(50, 182, 56, 0.12);
-    border-radius: 50%;
-    margin-bottom: 20px;
-  }
-.footer{
-    display: none;
-}
-  .orderConfirmationTitle {
-    font-size: 16px;
-  }
-
-  .orderConfirmationMessage {
-    font-size: 12px;
-  }
-
-  .orderItemsList {
-    padding: 10px;
-  }
-
-  .backButton {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-}
+  
