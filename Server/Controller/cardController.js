@@ -6,40 +6,60 @@ const { decrypt } = require('../utils/crypto');
 
 // Function to save card details
 const saveCard = async (req, res) => {
-    const { cardNumber, expiryDate, cvv, nameOncard } = req.body;
-    const userId = req.user._id;
+  let { cardNumber, expiryDate, cvv, nameOncard } = req.body;
   
-    try {
-      // Validate raw card number and CVV manually
-      if (!/^[0-9]+$/.test(cardNumber) || cardNumber.length < 13 || cardNumber.length > 19) {
-        return res.status(400).json({ message: 'Invalid card number' });
-      }
-      if (!/^[0-9]+$/.test(cvv) || cvv.length < 3 || cvv.length > 4) {
-        return res.status(400).json({ message: 'Invalid CVV' });
-      }
-  
-      // Hash the card number and CVV for security
-      const saltRounds = 10;
-      const hashedCardNumber = await bcrypt.hash(cardNumber, saltRounds);
-      const hashedCVV = await bcrypt.hash(cvv, saltRounds);
-  
-      // Create a new card object
-      const newCard = new Card({
-        cardNumber: hashedCardNumber,
-        expiryDate,
-        cvv: hashedCVV,
-        nameOncard,
-        userId,
-      });
-  
-      await newCard.save();
-  
-      res.status(201).json({ message: 'Card details saved successfully', card: newCard });
-    } catch (error) {
-      console.error('Error saving card:', error);
-      res.status(500).json({ message: 'Internal server error' });
+  // Trim card data to remove any leading or trailing spaces
+  cardNumber = cardNumber.trim();
+  cvv = cvv.trim();
+  nameOncard = nameOncard.trim();
+
+  console.log('Received card details:', cardNumber, expiryDate, cvv, nameOncard);
+
+  const userId = req.userId;
+  console.log('User ID:', userId);
+
+  try {
+    // Validate raw card number and CVV manually
+    if (!/^[0-9]+$/.test(cardNumber) || cardNumber.length < 13 || cardNumber.length > 19) {
+      console.log('Invalid card number:', cardNumber);
+      return res.status(400).json({ message: 'Invalid card number' });
     }
-  };
+    if (!/^[0-9]+$/.test(cvv) || cvv.length < 3 || cvv.length > 4) {
+      console.log('Invalid CVV:', cvv);
+      return res.status(400).json({ message: 'Invalid CVV' });
+    }
+
+    // Validate expiry date (MM/YY format)
+    const expiryDatePattern = /^(0[1-9]|1[0-2])\/([0-9]{2})$/; // MM/YY format
+    if (!expiryDatePattern.test(expiryDate)) {
+      console.log('Invalid expiry date:', expiryDate);
+      return res.status(400).json({ message: 'Invalid expiry date' });
+    }
+
+    // Hash the card number and CVV for security
+    const saltRounds = 10;
+    const hashedCardNumber = await bcrypt.hash(cardNumber, saltRounds);
+    const hashedCVV = await bcrypt.hash(cvv, saltRounds);
+
+    // Create a new card object
+    const newCard = new Card({
+      cardNumber: hashedCardNumber,
+      expiryDate,
+      cvv: hashedCVV,
+      nameOncard,
+      userId,
+    });
+
+    console.log('New Card:', newCard);
+    await newCard.save();
+
+    res.status(201).json({ message: 'Card details saved successfully', card: newCard });
+  } catch (error) {
+    console.error('Error saving card:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
   
   const getCards = async (req, res) => {
     try {

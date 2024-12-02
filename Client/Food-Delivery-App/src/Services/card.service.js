@@ -2,6 +2,7 @@ const BACKEND_URL = import.meta.env.VITE_BASE_URL;
 import { fetchWithHandler } from '../Helper/index';
 
 export const saveCardDetails = async (cardData) => {
+  console.log('cardData in controller:', cardData);
     try {
       const response = await fetchWithHandler(`${BACKEND_URL}/api/card/save-card`, 'POST', cardData);
       return response;
@@ -11,22 +12,18 @@ export const saveCardDetails = async (cardData) => {
     }
   };
 
-  export const getCards = async () => {
+  export const getCards = async (token) => {
     try {
-      const response = await fetch('/api/cards'); // Make sure this endpoint is correct
-      if (!response.ok) {
-          const text = await response.text();  // Get raw response text
-          console.error('Error fetching cards:', text);
-          throw new Error('Failed to fetch cards');
-      }
-      const data = await response.json();
-      console.log('Fetched cards:', data);
-      setCards(data);
-  } catch (err) {
-      console.error('Error fetching cards:', err);
+      const response = await fetchWithHandler(`${BACKEND_URL}/api/card/get-cards`,'GET',token );
+      return response;
+    }catch(error){
+      console.error("Save Card Error:", error.message);
+      throw error;
+    }
   }
-  };
-  
+
+
+
 export const deleteCard = async (cardId) => {
     try {
       const response = await fetchWithHandler(`${BACKEND_URL}/api/card/delete-card/${cardId}`, 'DELETE');

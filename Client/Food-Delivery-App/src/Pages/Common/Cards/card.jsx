@@ -15,18 +15,17 @@ function Cards() {
     const [modalMode, setModalMode] = useState('add');
     const [currentCard, setCurrentCard] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
-
+    const token = localStorage.getItem('token');
+    
     const openModal = (mode, card = null) => {
         setModalMode(mode);
         if (mode === 'edit' && card) {
-            // Prefill state variables with the card details
-            setCardNumber(card.cardNumber);
-            setExpiryDate(card.expiryDate);
-            setCVV(card.cvv);
-            setNameOncard(card.nameOncard);
+            setCardNumber(card.cardNumber || ''); // Fallback to empty string if undefined or null
+            setExpiryDate(card.expiryDate || '');
+            setCVV(card.cvv || '');
+            setNameOncard(card.nameOncard || '');
             setCurrentCard(card); // Store current card for future reference
         } else {
-            // Clear fields when adding a new card
             setCardNumber('');
             setExpiryDate('');
             setCVV('');
@@ -48,18 +47,18 @@ function Cards() {
             cvv,
             nameOncard,
         };
-    
+
         try {
             if (modalMode === 'edit') {
                 // Update existing card
-      
+
                 const updatedCard = await updateCardDetails(currentCard._id, {
                     expiryDate,
                     nameOncard,
                 });
-             
+
                 toast.success('Card updated successfully!');
-                
+
                 // Update the card in the state
                 setCards((prevCards) =>
                     prevCards.map((card) =>
@@ -68,108 +67,123 @@ function Cards() {
                 );
             } else {
                 // Create a new card
-         
-                const newCard = await saveCardDetails(cardData); // Call the API for adding new card
-                
+                console.log('Card data:', cardData);
+                const newCard = await saveCardDetails(cardData);
+                console.log('New Card:', newCard);
+
+
                 toast.success('Card added successfully!');
-         
-    
+
+
                 // Add the new card to the state
                 setCards((prevCards) => [...prevCards, newCard]);
             }
-    
+
             closeModal(); // Close the modal after save or update
         } catch (error) {
             console.error('Error saving card:', error);
             alert('Failed to save card details');
         }
     };
-    
+
     const handleEdit = (card) => {
         setIsEditing(true);
         setCurrentCard(card);
         openModal('edit', card); // Pass the card to open modal for editing
     };
-const handleDelete = async (cardId) => {
-    try {
-        await deleteCard(cardId);
-        toast.success('Card deleted successfully!');
-    } catch (error) {
-        toast.error('Failed to delete card');
-    }
-};
-
-const updateCard = async () => {
-    const cardData = {
-        cardNumber,
-        expiryDate,
-        cvv,
-        nameOncard,
-    };
-    console.log('Card data:', cardData);
-    try {
-        await updateCardDetails(currentCard._id, cardData);
-        toast.success('Card details updated successfully!');
-        closeModal(); // Close modal after successful update
-    } catch (error) {
-        toast.error('Failed to update card details');
-    }
-};
-
-
-useEffect(() => {
-    const fetchCards = async () => {
+    const handleDelete = async (cardId) => {
+        if (!cardId) return; // Ensure cardId exists
         try {
-            const response = await fetch('/api/cards'); // Replace with your API call
-            const data = await response.json();
-            setCards(data || []); // Ensure it's an empty array if no data is returned
+            await deleteCard(cardId);
+            toast.success('Card deleted successfully!');
         } catch (error) {
-            console.error("Error fetching cards:", error);
-            setCards([]); // Fallback to empty array if there's an error
+            toast.error('Failed to delete card');
         }
     };
 
-    fetchCards();
-}, []);
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-    if (error) {
-        return <div>{error}</div>;
-    }
+    const updateCard = async () => {
+        const cardData = {
+            cardNumber,
+            expiryDate,
+            cvv,
+            nameOncard,
+        };
+        console.log('Card data:', cardData);
+        try {
+            await updateCardDetails(currentCard._id, cardData);
+            toast.success('Card details updated successfully!');
+            closeModal(); // Close modal after successful update
+        } catch (error) {
+            toast.error('Failed to update card details');
+        }
+    };
+
+
+    // useEffect(() => {
+    //     const fetchCards = async () => {
+    //       try {
+    //         const fetchedCards = await getCards();
+    //         setCards(fetchedCards);
+    //       } catch (err) {
+    //         console.error("Error fetching cards:", err);
+    //         setError("Failed to load cards."); // Optional: Set error state
+    //       }
+    //     };
+    
+    //     fetchCards();
+    //   }, []);
+
+    useEffect(() => {
+        if (token) {
+          const fetchCards = async () => {
+            try {
+              const data = await getCards(token);
+              setCards(data);
+            } catch {
+              toast.error('Failed to fetch cards');
+            }
+          };
+          fetchCards();
+        }
+      }, [token]);
+
 
 
     return (
         <>
             <div className={styles.cardContainer}>
-            {cards.length === 0 ? (
-                <p>No cards found</p>
-            ) : (
-                <div className={styles.cardList}>
-                    {cards.map((card, index) => (
-                        <div className={styles.getCards} key={index}>
-                            <div className={styles.circle}>
-                                <span className="codicon codicon-credit-card"></span>
-                            </div>
-                            <div className={styles.cardInfo}>
-                                <div className={styles.cardDetails}>
-                                    <div className={styles.cardNumber}>
-                                        <span>{`XXXXXXXXXXX${card.cardNumber.slice(-4)}`}</span>
+                {cards.length === 0 ? (
+                    <p>No cards found</p>
+                ) : (
+                    <div className={styles.cardList}>
+                        {cards.map((card, index) => {
+                            if (!card) return null; // Skip rendering if card is null or undefined
+                            return (
+                                <div className={styles.getCards} key={index}>
+                                    <div className={styles.circle}>
+                                        <span className="codicon codicon-credit-card"></span>
                                     </div>
-                                    <div className={styles.cardHolderName}>
-                                        <span>{card.nameOncard}</span>
+                                    <div className={styles.cardInfo}>
+                                        <div className={styles.cardDetails}>
+                                            <div className={styles.cardNumber}>
+                                                <span>{`XXXXXXXXXXX${card.cardNumber.slice(-4)}`}</span>
+                                            </div>
+                                            <div className={styles.cardHolderName}>
+                                                <span>{card.nameOncard}</span>
+                                            </div>
+                                        </div>
+                                        <span
+                                            onClick={() => handleEdit(card)} // Trigger editing for this card
+                                            className={`codicon codicon-edit ${styles.editIcon}`}
+                                        ></span>
                                     </div>
                                 </div>
-                                <span
-                                    onClick={() => handleEdit(card)} // Trigger editing for this card
-                                    className={`codicon codicon-edit ${styles.editIcon}`}
-                                ></span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
+                            );
+                        })}
+                    </div>
+                )}
+
                 {/* Add New Card Button */}
                 <div className={styles.addCard} onClick={() => openModal('add')}>
                     <div className={styles.circle}>

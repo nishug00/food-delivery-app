@@ -21,11 +21,11 @@ export const login = async (data) => {
     }
 };
 
-export const handleSaveClick = async (updatedData) => {
-    return await fetchWithHandler(`${BACKEND_URL}/api/user/update`, 'PUT', updatedData);
+export const handleSaveClick = async (updatedData, token) => {
+    return await fetchWithHandler(`${BACKEND_URL}/api/user/update`, 'PUT', updatedData, token);
 };
 
+
 export const fetchUserDetails =async()=>{
-    console.log('Fetching user details in service...');
     return await fetchWithHandler(`${BACKEND_URL}/api/user/getUserDetails`, 'GET');
 }

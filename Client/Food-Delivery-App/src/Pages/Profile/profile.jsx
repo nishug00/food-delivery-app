@@ -23,8 +23,8 @@ const Profile = () => {
     const [editedCountry, setEditedCountry] = useState(user?.country || localStorage.getItem('country'));
     const navigate = useNavigate();
     const [cards, setCards] = useState([]);
-    const [loading, setLoading] = useState(true); // Track loading state
     const [error, setError] = useState(null); // Track errors
+    const token = localStorage.getItem('token');
 
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
@@ -34,14 +34,15 @@ const Profile = () => {
         if (editMode) {
             try {
                 const updatedData = {
+                    id: user._id,  // Add user.id here
                     name: editedName,
                     email: editedEmail,
                     gender: editedGender,
                     country: editedCountry
                 };
-
-                await handleSaveClick(updatedData); // Assuming this sends the updated data to the backend
-                await getUserDetails(); // Re-fetch the latest user details and update the state
+    
+                await handleSaveClick(updatedData, token);  // Pass the updatedData with id
+                await getUserDetails(); 
                 setEditMode(false); // Exit edit mode
             } catch (error) {
                 console.error("Save failed:", error.message);
@@ -50,13 +51,12 @@ const Profile = () => {
             setEditMode(true); // Enter edit mode
         }
     };
+    
 
 
     const getUserDetails = async () => {
         try {
-            console.log('Fetching user details...');
             const userData = await fetchUserDetails();  // Log the response here
-            console.log('Fetched User Data:', userData);
             if (!userData) {
                 throw new Error('User data is null or undefined');
             }
@@ -68,9 +68,7 @@ const Profile = () => {
         } catch (err) {
             setError(err.message);
             console.error('Error fetching user details:', err.message);
-        } finally {
-            setLoading(false);
-        }
+        } 
     };
     
 

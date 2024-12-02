@@ -20,7 +20,7 @@ exports.addAddress = async (req, res) => {
             pincode,
             isDefault: !existingDefaultAddress,
         });
-console.log('newAddress', newAddress);
+
         await newAddress.save();
         res.status(201).json(newAddress);
     } catch (err) {
@@ -39,8 +39,6 @@ console.log('newAddress', newAddress);
 
         const addresses = await Address.find({ userId });
         const sortedAddresses = addresses.sort((a, b) => b.isDefault - a.isDefault);
-        console.log('Sorted addresses:', sortedAddresses);
-        console.log('Fetched addresses for user:', userId);
 
         res.status(200).json(sortedAddresses);
     } catch (error) {
