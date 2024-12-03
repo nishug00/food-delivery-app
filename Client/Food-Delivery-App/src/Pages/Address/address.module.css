@@ -20,10 +20,10 @@
 
 .addressContainer {
   display: flex;
-  flex-wrap: nowrap; /* Ensure no wrapping occurs */
-  gap: 20px; /* Maintain gap between cards and add address button */
-  justify-content: flex-start; /* Align cards to the start of the container */
-  align-items: flex-start; /* Align items at the top of the container */
+  flex-wrap: nowrap;
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .addressCard,
@@ -43,24 +43,24 @@
 .addressList {
   display: flex;
   gap: 20px;
-  flex-wrap: nowrap; /* Prevent wrapping */
-  overflow-x: auto; /* Allow scrolling if needed */
+  flex-wrap: nowrap;
+  overflow-x: auto;
   padding-top: 20px;
 }
 
 .addAddress {
   display: flex;
-  flex-direction: column; /* Stack icon and text vertically */
-  align-items: center; /* Center align the content */
-  gap: 5px; /* Space between the icon and text */
-  cursor: pointer; /* Make it clickable */
-  padding: 20px; /* Add padding around the content */
-  border: 2px dashed #ccc; /* Dashed border */
-  border-radius: 10px; /* Rounded corners for the container */
-  width: 250px; /* Fixed width */
-  height: 200px; /* Fixed height (or whatever fixed height you prefer) */
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 20px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  width: 250px;
+  height: 200px;
   justify-content: center;
-  min-width: 250px; /* Ensures the width doesn't shrink */
+  min-width: 250px;
 }
 
 .addAddress .circle {
@@ -69,21 +69,21 @@
   border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the icon inside the circle */
+  justify-content: center;
   font-size: 24px;
-  background-color: rgba(252, 138, 6, 0.1); /* Background with opacity */
-  color: #fc8a06; /* Icon color */
+  background-color: rgba(252, 138, 6, 0.1);
+  color: #fc8a06;
 }
 
 .addAddress .circle .codicon {
-  font-size: 24px; /* Adjust icon size */
-  color: inherit; /* Inherit the color from the parent circle */
+  font-size: 24px;
+  color: inherit;
 }
 
 .addAddressText {
   font-size: 16px;
-  font-weight: 400; /* Add bold text to match the design */
-  color: #03081f; /* Text color */
+  font-weight: 400;
+  color: #03081f;
 }
 
 .modalOverlay {
@@ -132,57 +132,52 @@
   margin-top: 20px;
 }
 .formRow {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap; /* Allows the form elements to wrap if necessary */
-  }
-  
-  .inputGroup {
-    flex: 1;
-    min-width: 180px; /* Prevents the fields from being too narrow */
-  }
-
-  .textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid #c5c5c5;
-    border-radius: 10px;
-    font-size: 14px;
-    background: #fff;
-    margin-top: 10px;
-  }
-  
-  .input,
-  .textarea,.select {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid #c5c5c5;
-    border-radius: 10px;
-    font-size: 14px;
-    background: #fff;
-    color: #7E7E7E;
-  }
-  
-  .buttonGroup {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-  }
-  
-  .saveButton {
-    width: 100px;
-    padding: 10px;
-    background-color: #fc8a06;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  .error {
-    color: red;
-    font-size: 0.7rem;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.inputGroup {
+  flex: 1;
+  min-width: 180px;
+}
+.textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #c5c5c5;
+  border-radius: 10px;
+  font-size: 14px;
+  background: #fff;
+  margin-top: 10px;
+}
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #c5c5c5;
+  border-radius: 10px;
+  font-size: 14px;
+  background: #fff;
+  color: #7E7E7E;
+}
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.saveButton {
+  width: 100px;
+  padding: 10px;
+  background-color: #fc8a06;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.error {
+  color: red;
+  font-size: 0.7rem;
 }  
-
 .userName {
   font-size: 14px;
   font-weight: 600;
@@ -192,18 +187,17 @@
 
 .addressGrid {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping if there are too many cards */
-  gap: 20px; /* Add space between cards */
-  justify-content: flex-start; /* Align items to the start of the container */
-
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
 }
 
 .addressCard {
-  width: 270px; /* Set width for each address card */
-  border:1px solid #AFAFAF;
-  padding: 15px; /* Padding for the card content */
-  border-radius: 10px; /* Rounded corners */
-  background-color: #fff; /* White background */
+  width: 270px;
+  border: 1px solid #AFAFAF;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -230,7 +224,6 @@
 .addressDetails {
   margin-top: 10px;
   font-size: 14px;
-  
 }
 
 .fullAddress {
@@ -267,64 +260,53 @@
   padding: 3px 15px;
   gap: 10px;
   border-radius: 50px;
-  background: rgba(252, 138, 6, 0.1); /* FC8A06 with 0.1 opacity */
+  background: rgba(252, 138, 6, 0.1);
   font-size: 12px;
   font-weight: 400;
-  color: #FC8A06;  /* Text color */
+  color: #FC8A06;
 }
-/* General placeholder styling */
 .input::placeholder,
 .textarea::placeholder {
-  font-family: Poppins; /* Ensures Poppins font */
+  font-family: Poppins;
   font-size: 14px;
-  font-weight: 500; /* Medium weight */
+  font-weight: 500;
   line-height: 21px;
-  letter-spacing: 0.1px; /* Consistent with your specifications */
-  color: #7E7E7E; /* Placeholder color */
-  opacity: 1; /* Ensures the color is not transparent */
+  letter-spacing: 0.1px;
+  color: #7E7E7E;
+  opacity: 1;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
 }
-
-/* Apply consistent styles for focus states */
 .input:focus::placeholder,
 .textarea:focus::placeholder {
-  color: #AFAFAF; /* Optional: Lighten the placeholder on focus */
+  color: #AFAFAF;
 }
-/* Base styles are already defined above */
 @media only screen and (max-width: 768px) {
-  /* Ensure address card and add address button stay the same size */
   .addressList {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     padding-top: 20px;
-    width: 100%;  /* Ensures the container covers the full width */
-    margin: 0;    /* Remove any default margins */
-    box-sizing: border-box; /* Ensures padding is included in width calculation */
-  }
-
-  /* Add Address button should span the full width */
-  .addAddress {
-    display: flex;
-    flex-direction: row; /* Align items side by side */
-    width: 100%; /* Full width on mobile */
-    height: auto; /* Let the height adjust automatically */
-    justify-content: flex-start; /* Align content to the left */
-    gap: 10px; /* Keep gap between icon and text */
-    padding: 15px; /* Adjust padding as necessary */
+    width: 100%;
+    margin: 0;
     box-sizing: border-box;
   }
-
-  /* Ensure the address card is full-width and responsive */
+  .addAddress {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+  }
   .addressCard {
-    width: 100%; /* Make address cards fill the screen */
+    width: 100%;
     padding: 10px;
     box-sizing: border-box;
     gap: 10px;
   }
-
-  /* Address cards in a grid with responsive design */
   .addressGrid {
     display: flex;
     flex-wrap: wrap;
@@ -333,50 +315,43 @@
     padding: 0;
     box-sizing: border-box;
   }
-
-  /* Modal container */
   .modalContainer {
     width: 90%;
     margin-top: 33%;
   }
-
   .saveButton {
     width: 100%;
     padding: 8px;
   }
-
   .inputGroup {
     min-width: 100%;
   }
-
   .modalTitle {
     font-size: 16px;
   }
-
-  .input, .textarea, .select {
+  .input,
+  .textarea,
+  .select {
     font-size: 12px;
     padding: 10px;
   }
-
-  /* Hide promo header on mobile */
   .promoHeader {
     display: none;
   }
-
   .container {
     padding: 0 15px;
     width: 100%;
-    max-width: 1200px;  /* Max-width can be adjusted as per your layout needs */
-    margin: 0 auto; 
+    max-width: 1200px;
+    margin: 0 auto;
   }
   .header i {
-    background-color: #FC8A06; /* Set background color to #FC8A06 */
-    color: white; /* Set the icon color to white */
-    border-radius: 50%; /* Make the background circular */
-    padding: 10px; /* Adjust padding to make it a perfect circle */
-    font-size: 18px; /* Adjust the icon size if needed */
-    display: inline-block; /* Make sure the icon is inline with the text */
-    margin-right: 10px; /* Space between the icon and the text */
+    background-color: #FC8A06;
+    color: white;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 18px;
+    display: inline-block;
+    margin-right: 10px;
   }
   .form {
     display: flex;

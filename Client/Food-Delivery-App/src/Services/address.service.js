@@ -2,22 +2,21 @@ import toast from "react-hot-toast";
 const BACKEND_URL = import.meta.env.VITE_BASE_URL;
 import { handleApiResponse } from '../Helper/index';
 
-const fetchWithHandler = async (url, method, data = {}) => {
-  const config = {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-      ...(data.token && { 'Authorization': `Bearer ${data.token}` }), 
-    },
-    body: method !== 'GET' ? JSON.stringify(data) : undefined,
-  };
-
+const fetchWithHandler = async (url, method, body) => {
   try {
-    const response = await fetch(url, config);
-    const responseData = await response.json();
-    return handleApiResponse({ response: { status: response.status }, data: responseData });
+    const response = await fetch(url, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${body.token}`,
+      },
+      body: JSON.stringify(body),
+    });
+
+    const data = await response.json();
+    return data;
   } catch (error) {
-    toast.error("Network error or server not reachable");
+    console.error('Error in fetchWithHandler:', error);
     throw error;
   }
 };
@@ -29,13 +28,13 @@ export const saveAddress = async (data, token, userId) => {
       'POST',
       { token, userId, ...data }
     );
-    if (response) toast.success("Address added successfully!");
     return response;
   } catch (error) {
-    toast.error("Failed to add address");
+    console.error('Error saving address:', error);
     throw error;
   }
 };
+
 
 export const fetchUserAddresses = async (token) => {
   try {
@@ -82,10 +81,16 @@ export const updateAddress = async (addressData, token) => {
       },
       body: JSON.stringify(addressData),
     });
-    if (!response.ok) throw new Error('Failed to update address');
-    return await response.json();
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      console.error('Update failed:', responseData);
+      throw new Error('Failed to update address');
+    }
+    return responseData;
   } catch (error) {
-    toast.error("Failed to update address");
+    console.error('Error updating address:', error);
     throw error;
   }
 };
+
