@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Register.module.css';
+import styles from './register.module.css';
 import bannerImage from '../../../assets/mainPageImage.png';
 import logoImage from '../../../assets/orderImage.png';
 import Footer from '../../Common/Footer/footer';
