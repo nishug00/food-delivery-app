@@ -4,7 +4,7 @@ import styles from "./login.module.css";
 import { login } from "../../../Services/auth.service";
 import Footer from "../../Common/Footer/footer";
 import mainImage from "../../../assets/mainPageImage.png";
-import logoImage from "../../../assets/OrderImage.png";
+import logoImage from "../../../assets/orderImage.png";
 import { toast } from "react-hot-toast";
 
 const Login = () => {
