@@ -4,7 +4,7 @@ import Register from './Pages/Auth/RegisterPage/register';
 import Login from './Pages/Auth/LoginPage/login';
 import Home from './Pages/Home/home';
 import Product from './Pages/Product/product';
-import Checkout from './Pages/checkout/checkout';
+import Checkout from './Pages/Proceed/checkout';
 import Payment from './Pages/Payment/payment';
 import Order from './Pages/Order/order';
 import Profile from './Pages/Profile/profile';
