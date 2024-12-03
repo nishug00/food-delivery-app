@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Promotions.module.css';
+import styles from './promotions.module.css';
 import foodImage from '../../../assets/mainPageImage.png';
 
 function Promotions() {

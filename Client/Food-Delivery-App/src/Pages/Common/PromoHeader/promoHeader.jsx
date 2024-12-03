@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './PromoHeader.module.css';
+import styles from './promoHeader.module.css';
 import starIcon from '../../../assets/star.png';
 import locationIcon from '../../../assets/location.png';
 import cartIcon from '../../../assets/cart.png';

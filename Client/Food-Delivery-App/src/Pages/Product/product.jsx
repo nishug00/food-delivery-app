@@ -13,7 +13,7 @@ import delivery from '../../assets/delivery.png';
 import clock from '../../assets/clock.png';
 import rating from '../../assets/ratings.png';
 import search from '../../assets/search.png'
-import styles from './Product.module.css';
+import styles from './product.module.css';
 import Timings from './timingInfo/timings';
 import Location from './Location/location';
 

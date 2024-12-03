@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './AppAd.module.css';
+import styles from './appAd.module.css';
 import appAdShadow from '../../../assets/appAd.png';
 import appAdImage from '../../../assets/appAd.png';
 import orderImage from '../../../assets/orderImage.png';
