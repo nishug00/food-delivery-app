@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./login.module.css";
 import { login } from "../../../Services/auth.service";
 import Footer from "../../Common/Footer/footer";
-import mainImage from "../../../assets/MainPageImage.png";
+import mainImage from "../../../assets/mainPageImage.png";
 import logoImage from "../../../assets/OrderImage.png";
 import { toast } from "react-hot-toast";
 
