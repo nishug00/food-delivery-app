@@ -20,14 +20,14 @@ const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173').spli
 console.log('Allowed Origins:', allowedOrigins); // Verify it logs correctly
 
 app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true
+  origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+      } else {
+          callback(new Error('Not allowed by CORS'));
+      }
+  },
+  credentials: true
 }));
 
 app.use(express.json());

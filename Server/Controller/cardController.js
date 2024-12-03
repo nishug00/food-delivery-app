@@ -49,6 +49,7 @@ const getCards = async (req, res) => {
       }
 
       const cards = await Card.find({ userId: req.userId });
+      console.log('Cards:', cards);
 
       if (!cards || cards.length === 0) {
           return res.status(404).json({ message: 'No cards found' });
@@ -60,6 +61,11 @@ const getCards = async (req, res) => {
               const last4Digits = decryptedCardNumber.slice(-4); 
               const maskedNumber = 'x'.repeat(decryptedCardNumber.length - 4) + last4Digits; 
 
+              console.log('Masked card number:', maskedNumber);
+              console.log('Original card number:', decryptedCardNumber);
+              console.log('CVV:', card.cvv);
+              console.log('Original card:', card._doc);
+              console.log('Masked card:', { ...card._doc, cardNumber: maskedNumber, cvv: 'XXX' });
               return {
                   ...card._doc,
                   cardNumber: maskedNumber, 

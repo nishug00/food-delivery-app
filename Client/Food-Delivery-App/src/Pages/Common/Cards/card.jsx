@@ -79,15 +79,26 @@ function Cards() {
         if (token) {
             const fetchCards = async () => {
                 try {
+                    console.log('Fetching cards with token:', token);
                     const data = await getCards(token);
-                    setCards(data);
+                    console.log('Fetched data:', data); // Log the fetched data
+                    if (Array.isArray(data)) {
+                        setCards(data);  // Ensure 'data' is an array
+                    } else {
+                        console.error('Data is not an array:', data);
+                    }
                 } catch (error) {
+                    console.error('Error fetching cards:', error); // Log error if fetch fails
                     toast.error('Failed to fetch cards');
                 }
             };
+            
             fetchCards();
+        } else {
+            console.log('No token available'); // Log if token is missing
         }
     }, [token]);
+    
 
     return (
         <>
@@ -103,7 +114,7 @@ function Cards() {
                                     <div className={styles.cardInfo}>
                                         <div className={styles.cardDetails}>
                                             <div className={styles.cardNumber}>
-                                                <span>{`XXXXXXXXXXX${card.cardNumber.slice(-4)}`}</span>
+                                                <span>{`XXXXXXXXXXX${card.cardNumber}`}</span>
                                             </div>
                                             <div className={styles.cardHolderName}>
                                                 <span>{card.nameOncard}</span>

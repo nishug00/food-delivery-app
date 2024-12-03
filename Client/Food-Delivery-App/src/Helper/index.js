@@ -12,6 +12,7 @@ export function addTokenToHeader({ headers }) {
 }
 
 export const fetchWithHandler = async (url, method, data) => {
+  console.log('url, method, data', url, method, data);
   try {
       const headers = addTokenToHeader({
           headers: { 'Content-Type': 'application/json' },
@@ -27,6 +28,7 @@ export const fetchWithHandler = async (url, method, data) => {
       }
 
       const response = await fetch(url, fetchOptions);
+
 
       const responseData = await response.json();
       return handleApiResponse({ response, data: responseData });
