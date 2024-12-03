@@ -1,18 +1,19 @@
 const crypto = require('crypto');
 
-function decrypt(encryptedData) {
-    const key = Buffer.from(process.env.SECRET_KEY, 'hex');
-    const iv = Buffer.from(process.env.IV_VECTOR, 'hex');
+const algorithm = 'aes-256-cbc';
+const secretKey = process.env.SECRET_KEY;  // Ensure this is correctly set in .env
+const iv = process.env.IV;  // Ensure this is correctly set in .env (should be 16 bytes)
 
+// Decrypt function
+function decrypt(encryptedText) {
     try {
-        const encryptedBuffer = Buffer.from(encryptedData, 'base64'); 
-        const decipher = crypto.createDecipheriv('aes-256-cbc', key, iv);
-        let decrypted = decipher.update(encryptedBuffer, null, 'utf8');
-        decrypted += decipher.final('utf8');
+        const decipher = crypto.createDecipheriv(algorithm, Buffer.from(secretKey, 'hex'), Buffer.from(iv, 'hex'));
+        let decrypted = decipher.update(encryptedText, 'hex', 'utf-8');
+        decrypted += decipher.final('utf-8');
         return decrypted;
-    } catch (err) {
-        console.error('Decryption Error:', err);
-        throw new Error(`Error decrypting card data: ${err.message}`);
+    } catch (error) {
+        console.error('Error decrypting:', error);
+        throw new Error('Decryption failed');
     }
 }
 
