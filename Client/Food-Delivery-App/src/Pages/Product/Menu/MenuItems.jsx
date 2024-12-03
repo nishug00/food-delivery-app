@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './MenuItems.module.css';
-import DiscountImage1 from '../../../assets/discountImage1.png';
+import DiscountImage1 from '../../../assets/DiscountImage1.png';
 import DiscountImage2 from '../../../assets/discountImage2.png';
 import DiscountImage3 from '../../../assets/discountImage3.png';
 import addItem from '../../../assets/addItem.png';
