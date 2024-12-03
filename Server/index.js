@@ -15,7 +15,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-const allowedOrigins = process.env.CORS_ORIGIN.split(',');
+const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173').split(',');
+
+console.log('Allowed Origins:', allowedOrigins); // Verify it logs correctly
 
 app.use(cors({
     origin: (origin, callback) => {
