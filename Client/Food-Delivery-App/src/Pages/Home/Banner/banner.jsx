@@ -3,7 +3,7 @@ import styles from './banner.module.css';
 import girlPizza from '../../../assets/girlPizza.png';
 import girlNoodles from '../../../assets/girlNoodles.png';
 import Notification from '../../../assets/notification.png';
-import LeftIcon from '../../../assets/LeftIcon.png';
+import LeftIcon from '../../../assets/leftIcon.png';
 
 function Banner() {
     return (
