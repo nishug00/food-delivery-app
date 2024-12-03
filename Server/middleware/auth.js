@@ -16,9 +16,7 @@ const authMiddleware = (req, res, next) => {
     try {
         const tokenValue = token.split(" ")[1];
         const decoded = jwt.verify(tokenValue, process.env.JWT_SECRET);
-
-        // Instead of req.userId, set req.user with the decoded user info
-        req.userId = decoded.id;  // Assuming the 'id' is in the payload
+        req.userId = decoded.id; 
 
         next();
     } catch (error) {

@@ -8,7 +8,7 @@ function Restaurants() {
   const navigate = useNavigate();
 
   const handleCardClick = (id) => {
-    navigate(`/product/${id}`); // Add restaurant ID to the URL
+    navigate(`/product/${id}`); 
   };
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 .navContainer {
   display: flex;
-  justify-content: space-between; /* Space between logo, menu, and user */
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 40px 0;
@@ -12,21 +12,21 @@
 .navMenuContainer {
   display: flex;
   justify-content: center;
-  flex: 1; /* Take up available space */
-  gap: 80px; /* Equal spacing between each menu item */
+  flex: 1;
+  gap: 80px; 
 }
 
 .navItemsWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 70px; /* Equal gaps between menu items */
-  flex: 1; /* Takes available space */
+  gap: 70px; 
+  flex: 1; 
   margin-left: 130px;
 }
 
 .orderImage {
-  width: 150px; /* Adjust size */
+  width: 150px; 
 }
 
 .homeButton {
@@ -63,13 +63,12 @@
   color: #ffffff;
 }
 
-/* Styles when on other pages */
 .homeInactive {
-  background-color: transparent; /* No background */
+  background-color: transparent; 
   color: #000000;
 }
 .restaurantInactive {
-  background-color: transparent; /* No background */
+  background-color: transparent; 
   color: #000000;
 }
 
@@ -148,11 +147,11 @@
     display: block;
   }
   .imageContainer {
-    display: flex; /* Use flexbox to align items in a row */
-    justify-content: space-between; /* Create space between the images */
-    align-items: center; /* Vertically center the images */
-    width: 100%; /* Ensure the container takes up full width */
-    border-bottom: 2px solid #0000004d; /* Add a bottom border with color */
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%; 
+    border-bottom: 2px solid #0000004d; 
   }
 
   .imageContainer {
@@ -174,7 +173,7 @@
     width: 70px;
     height: 90px;
     border-left: 2px solid #0000004d;
-    padding-left: 10px; /* Adds gap between border-left and icon */
+    padding-left: 10px;
 }
 
 }

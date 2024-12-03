@@ -212,14 +212,14 @@
     }
   
     .rightSide {
-      display: none; /* Hide the right side on mobile */
+      display: none;
     }
   
     .leftSide {
       flex: 1;
       align-items: center;
       padding: 10px;
-      width: 100%; /* Ensure left side takes full width */
+      width: 100%;
     }
   
     .title {
@@ -248,14 +248,14 @@
     }
   
     .searchButton {
-        width: 40px;  /* Adjust the size for a circular button */
-        height: 40px; /* Same as width to make it circular */
+        width: 40px;  
+        height: 40px; 
         background-color: #fc8a06;
         color: #ffffff;
         border: none;
-        border-radius: 50%; /* Make it circular */
+        border-radius: 50%; 
         cursor: pointer;
-        font-size: 0; /* Hide any text */
+        font-size: 0; 
         display: flex;
         justify-content: center;
         align-items: center;
@@ -263,15 +263,11 @@
         padding: 0;
       }
 
-      
-      /* OR, if you're using an image instead of FontAwesome, replace the above with: */
       .leftIcon {
-        width: 20px; /* Set the icon size */
+        width: 20px; 
         height: 20px;
       }
       
-  
-    /* Hide the right-side elements on mobile */
     .girlwithPizza, .girlwithNoodles, .notification1, .notification2, .notification3, .background, .textoutline1, .textoutline2, .textoutline3 {
       display: none;
     }

@@ -92,9 +92,7 @@ function Cards() {
     return (
         <>
             <div className={styles.cardContainer}>
-                {cards.length === 0 ? (
-                    <p>No cards found</p>
-                ) : (
+           
                     <div className={styles.cardList}>
                         {cards.map((card, index) => (
                             card ? (
@@ -120,7 +118,6 @@ function Cards() {
                             ) : null
                         ))}
                     </div>
-                )}
 
                 <div className={styles.addCard} onClick={() => openModal('add')}>
                     <div className={styles.circle}>

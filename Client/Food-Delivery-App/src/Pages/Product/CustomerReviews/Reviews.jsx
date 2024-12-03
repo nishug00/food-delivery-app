@@ -4,9 +4,9 @@ import reviewStar from '../../../assets/reviewStar.png';
 import { fetchReviewsFromService } from '../../../Services/reviews.service';
 
 function Reviews() {
-    const scrollRef = useRef(null); // Ref for the card container
-    const [isAtStart, setIsAtStart] = useState(true); // Track if at the start of scroll
-    const [isAtEnd, setIsAtEnd] = useState(false); // Track if at the end of scroll
+    const scrollRef = useRef(null); 
+    const [isAtStart, setIsAtStart] = useState(true); 
+    const [isAtEnd, setIsAtEnd] = useState(false); 
     const [reviews, setReviews] = useState([])
 
     useEffect(() => {
@@ -14,7 +14,6 @@ function Reviews() {
             try {
                 const imageData = await fetchReviewsFromService();
                 setReviews(imageData.data);
-                console.log(imageData.data);
             } catch (error) {
                 console.error('Error while fetching reviews:', error);
             }
@@ -25,7 +24,7 @@ function Reviews() {
     const scrollLeft = () => {
         if (scrollRef.current) {
             scrollRef.current.scrollBy({
-                left: -scrollRef.current.clientWidth, // Scroll width equal to container width
+                left: -scrollRef.current.clientWidth, 
                 behavior: 'smooth',
             });
         }
@@ -34,7 +33,7 @@ function Reviews() {
     const scrollRight = () => {
         if (scrollRef.current) {
             scrollRef.current.scrollBy({
-                left: scrollRef.current.clientWidth, // Scroll width equal to container width
+                left: scrollRef.current.clientWidth, 
                 behavior: 'smooth',
             });
         }

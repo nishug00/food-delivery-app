@@ -5,7 +5,7 @@ const getReviews = async (req, res) => {
         const images = await Review.find();
         res.status(200).json({ success: true, data: images });
     } catch (error) {
-        console.error("Error fetching reviews:", error);  // Log any errors encountered
+        console.error("Error fetching reviews:", error); 
         res.status(500).json({ success: false, message: "Server error" });
     }
 };

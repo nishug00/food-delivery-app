@@ -39,7 +39,6 @@ function MenuItems({ isCartVisible, toggleCartVisibility   }) {
         // Copy the link to the clipboard
         navigator.clipboard.writeText(link)
           .then(() => {
-            console.log('Link copied to clipboard');
           })
           .catch(err => {
             console.error('Failed to copy link: ', err);
@@ -48,8 +47,7 @@ function MenuItems({ isCartVisible, toggleCartVisibility   }) {
       
 
     const navigate = useNavigate();
-    // const gridLayout = isCartVisible ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)';
-    const { cart, setCart } = useAppContext();  // Get cart and setCart from AppContext
+    const { cart, setCart } = useAppContext();  
     const totalPrice = cart.reduce((total, item) => total + item.price * item.count, 0);
     const checkoutLink = `${window.location.origin}/checkout`;
 

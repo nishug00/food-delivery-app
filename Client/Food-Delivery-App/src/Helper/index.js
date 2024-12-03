@@ -16,9 +16,7 @@ export const fetchWithHandler = async (url, method, data) => {
       const headers = addTokenToHeader({
           headers: { 'Content-Type': 'application/json' },
       });
-      console.log('headers', headers);
 
-      // Only add a body if the method is not GET or HEAD
       const fetchOptions = {
           method,
           headers,
@@ -29,7 +27,6 @@ export const fetchWithHandler = async (url, method, data) => {
       }
 
       const response = await fetch(url, fetchOptions);
-      console.log('response in helper', response);
 
       const responseData = await response.json();
       return handleApiResponse({ response, data: responseData });

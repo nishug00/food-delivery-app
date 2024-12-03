@@ -119,7 +119,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start; /* Aligns content to the top */
+      justify-content: flex-start; 
       width: 100%;
     }
     .successIcon {
@@ -127,7 +127,7 @@
       height: 150px;
     }
     .iconWrapper {
-      width: 100px; /* Fixed typo from "1-0px" to "100px" */
+      width: 100px; 
       height: 150px;
       display: flex;
       align-items: center;

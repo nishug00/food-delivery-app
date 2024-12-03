@@ -81,11 +81,6 @@ const signin = async (req, res) => {
 };
 const updateProfile = async (req, res) => {
   const { id, name, email, gender, country } = req.body;
-
-  console.log("Received ID:", id);
-  console.log('req.body:', req.body);
-
-  // Ensure that the ID is received and matches the user making the request
   if (!id || id !== req.userId) {
     return res.status(401).json({ message: "Unauthorized: User ID mismatch" });
   }
@@ -97,7 +92,6 @@ const updateProfile = async (req, res) => {
       { new: true }
     );
 
-    console.log('Updated User:', updatedUser);
     if (!updatedUser) {
       return res.status(404).json({ message: "User not found" });
     }

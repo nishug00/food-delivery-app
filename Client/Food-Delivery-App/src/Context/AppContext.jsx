@@ -12,13 +12,8 @@ export const AppProvider = ({ children }) => {
 const [targetRef, setTargetRef] = useState(null);
   const handleAddItem = (product) => {
     setCart((prevCart) => {
-      console.log('Previous Cart:', prevCart);
-      
-      // Check if the item already exists in the cart
       const existingItem = prevCart.find(item => item._id === product._id);
-      
       if (existingItem) {
-        // If item exists, update the count and show the updated count in the toast
         const updatedCart = prevCart.map(item =>
           item._id === product._id ? { ...item, count: item.count + 1 } : item
         );
@@ -37,15 +32,14 @@ const [targetRef, setTargetRef] = useState(null);
   const handleRemoveItem = (productId) => {
     console.log('Removing item with ID:', productId);
     setCart((prevCart) => prevCart.filter(item => item._id !== productId));
-    console.log('Cart after removal:', cart);
   };
 
   const toggleCartVisibility = () => {
     setIsCartVisible(prevState => !prevState);
     if (targetRef && targetRef.current) {
       targetRef.current.scrollIntoView({
-        behavior: 'smooth',  // Smooth scroll
-        block: 'start',      // Scroll to the start of the target element
+        behavior: 'smooth', 
+        block: 'start',    
       });
     }
   };

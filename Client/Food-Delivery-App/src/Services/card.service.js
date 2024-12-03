@@ -2,7 +2,6 @@ const BACKEND_URL = import.meta.env.VITE_BASE_URL;
 import { fetchWithHandler } from '../Helper/index';
 
 export const saveCardDetails = async (cardData) => {
-  console.log('cardData in controller:', cardData);
     try {
       const response = await fetchWithHandler(`${BACKEND_URL}/api/card/save-card`, 'POST', cardData);
       return response;
@@ -35,8 +34,6 @@ export const deleteCard = async (cardId) => {
   };
 
   export const updateCardDetails = async (cardId, cardData) => {
-    console.log("Card ID:", cardId);
-    console.log("Card Data:", cardData);
     try {
       const response = await fetchWithHandler(`${BACKEND_URL}/api/card/edit-card/${cardId}`, 'PUT', cardData);
       return response;

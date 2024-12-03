@@ -12,8 +12,6 @@ export const fetchImagesfromBackend = async () => {
             }
         });
 
-        console.log("Backend response status:", response.status); // Log the status for debugging
-
         if (response.ok) {
             const responseData = await response.json();
             return responseData;
@@ -35,7 +33,7 @@ export const fetchRestaurantImagesService = async () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`  // Include the token in the header
+                'Authorization': `Bearer ${token}`
             }
         });
 
@@ -126,15 +124,12 @@ export const fetchDrinksMenuFromService = async () => {
 
 export const fetchProductsByRestaurant = async (restaurantId) => {
     try {
-        console.log("Restaurant ID:", restaurantId);
       const response = await fetch(`${BACKEND_URL}/products/${restaurantId}`);
-  console.log("Response:", response);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
   
       const data = await response.json();
-      console.log("Data:", data);
       return data;
     } catch (error) {
       console.error('Error fetching products:', error);

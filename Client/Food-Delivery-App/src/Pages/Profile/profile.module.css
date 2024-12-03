@@ -119,11 +119,11 @@
         display:none;
     }
     .container {
-      padding: 0 ; /* Reduced padding on mobile */
+      padding: 0 ; 
     }
   
     .mainContent {
-      padding: 0 10px; /* Reduced padding on mobile */
+      padding: 0 10px; 
     }
     .iconTextRow i {
         font-size: 24px;
@@ -136,49 +136,49 @@
         justify-content: center;
       }
     .iconTextRow {
-      font-size: 18px; /* Reduced font size */
+      font-size: 18px;
       gap: 8px;
     }
   
     .profileContainer {
-      align-items: flex-start; /* Align items to the start */
+      align-items: flex-start; 
     }
   
     .profileImage {
       width: 50px;
-      height: 50px; /* Adjust profile image size for mobile */
+      height: 50px; 
     }
   
     .username {
-      font-size: 16px; /* Smaller font size for mobile */
+      font-size: 16px; 
     }
   
     .editSaveButton {
-      width: 100px; /* Full width for mobile */
+      width: 100px;
       padding: 10px;
     }
   
     .formContainer {
-      flex-direction: column; /* Stack left and right sections */
+      flex-direction: column; 
       gap: 15px;
     }
   
     .leftSection,
     .rightSection {
-      width: 100%; /* Full width for both sections on mobile */
+      width: 100%; 
     }
   
     .inputField {
-      font-size: 12px; /* Smaller input text size */
+      font-size: 12px; 
     }
   
     .PaymentMethodContainer {
-      font-size: 20px; /* Reduced font size for mobile */
-      padding: 0 0 50px 0; /* Adjust padding */
+      font-size: 20px; 
+      padding: 0 0 50px 0; 
     }
   
     .divider {
-      margin-top: 15px; /* Reduced margin for mobile */
+      margin-top: 15px; 
     }
 
     .footer{
