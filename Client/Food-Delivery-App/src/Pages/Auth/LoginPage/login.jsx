@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Login.module.css";
+import styles from "./login.module.css";
 import { login } from "../../../Services/auth.service";
 import Footer from "../../Common/Footer/footer";
 import mainImage from "../../../assets/MainPageImage.png";
