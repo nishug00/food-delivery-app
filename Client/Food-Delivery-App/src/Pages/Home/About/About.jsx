@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './About.module.css';
 import orderFood from '../../../assets/orderFood.png';
-import appOrder from '../../../assets/appOrder.png';
+import appOrder from '../../../assets/AppOrder.png';
 import food from '../../../assets/food.png';
 
 function FaqSection() {
