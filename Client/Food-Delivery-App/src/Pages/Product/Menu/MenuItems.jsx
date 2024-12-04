@@ -22,7 +22,6 @@ function MenuItems({ isCartVisible, toggleCartVisibility   }) {
 
   
     const handleCopyLink = () => {
-        // Prepare the cart data without including any sensitive information
         const cartData = cart.map(item => ({
           name: item.name,
           price: item.price,
@@ -30,18 +29,16 @@ function MenuItems({ isCartVisible, toggleCartVisibility   }) {
           imageUrl: item.imageUrl || 'default-image-url.jpg',
         }));
       
-        // Encode cart data for URL safety
         const encodedCartData = encodeURIComponent(JSON.stringify(cartData));
-      
-        // Add a flag to indicate it's a shared session
         const link = `${window.location.origin}/checkout?cartData=${encodedCartData}&isSharedSession=true`;
       
-        // Copy the link to the clipboard
         navigator.clipboard.writeText(link)
           .then(() => {
+            toast.success('Link copied to clipboard!');
           })
           .catch(err => {
-            console.error('Failed to copy link: ', err);
+            console.error('Failed to copy link:', err);
+            toast.error('Failed to copy link. Please try again.');
           });
       };
       
