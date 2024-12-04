@@ -43,7 +43,6 @@ const saveCard = async (req, res) => {
 
   
 const getCards = async (req, res) => {
-  console.log('Getting cards for user:', req.userId);
 
   try {
       if (!req.userId) {
