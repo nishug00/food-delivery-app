@@ -1,4 +1,33 @@
+# netlify.toml
+
+[build]
+  base = "Client/Food-Delivery-App"
+  publish = "Client/Food-Delivery-App/dist"
+  functions = "Client/Food-Delivery-App/netlify/functions"
+  command = "npm run build"
+
 [[redirects]]
-from="/*"
-to="/index.html"
-status =200
+from = "/images/*"
+to = "https://res.cloudinary.com/diiockl8o/image/fetch/f_auto,q_auto/https://food-delivery-00.netlify.app/cld-assets/images/:splat?_a=BBFAAAAA0"
+status = 302
+force = true
+
+[[redirects]]
+from = "/cld-assets/images/*"
+to = "/images/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "/api/*"
+to = "https://food-delivery-app-backend-c1c3.onrender.com/api/:splat"
+status = 200
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+[context]
+  [context.production]
+    # Additional context-specific settings if needed (e.g., environment variables)
