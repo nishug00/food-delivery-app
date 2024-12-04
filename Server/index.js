@@ -27,6 +27,7 @@ app.use(
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
+        console.error("Blocked by CORS:", origin);
         callback(new Error("Not allowed by CORS"));
       }
     },
@@ -36,11 +37,11 @@ app.use(
 
 const path = require("path");
 
-app.use(express.static(path.join(__dirname, 'dist')));
+// app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+// });
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
