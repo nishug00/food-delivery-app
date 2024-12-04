@@ -1,21 +1,23 @@
 const crypto = require('crypto');
+const { encryptionKey, ivVector } = require('../config/env');
 
-const algorithm = 'aes-256-cbc';
-const secretKey = process.env.SECRET_KEY;  // Ensure this is correctly set in .env
-const iv = process.env.IV;  // Ensure this is correctly set in .env (should be 16 bytes)
+const encrypt = (data) => {
+    const cipher = crypto.createCipheriv('aes-256-cbc', encryptionKey, ivVector);
+    let encrypted = cipher.update(data, 'utf8', 'base64');
+    encrypted += cipher.final('base64');
+    return encrypted;
+};
 
-// Decrypt function
-function decrypt(encryptedText) {
+const decrypt = (encryptedData) => {
     try {
-        const decipher = crypto.createDecipheriv(algorithm, Buffer.from(secretKey, 'hex'), Buffer.from(iv, 'hex'));
-        let decrypted = decipher.update(encryptedText, 'hex', 'utf-8');
-        decrypted += decipher.final('utf-8');
+        const decipher = crypto.createDecipheriv('aes-256-cbc', encryptionKey, ivVector);
+        let decrypted = decipher.update(encryptedData, 'base64', 'utf8');
+        decrypted += decipher.final('utf8');
         return decrypted;
-    } catch (error) {
-        console.error('Error decrypting:', error);
+    } catch (err) {
+        console.error("Decryption failed:", err.message);
         throw new Error('Decryption failed');
     }
-}
+};
 
-module.exports = { decrypt };
-
+module.exports = { encrypt, decrypt };

@@ -4,6 +4,8 @@ import { fetchWithHandler } from '../Helper/index';
 export const saveCardDetails = async (cardData) => {
     try {
       const response = await fetchWithHandler(`${BACKEND_URL}/api/card/save-card`, 'POST', cardData);
+      console.log('cardData', cardData);
+      console.log('response', response);
       return response;
     } catch (error) {
       console.error("Save Card Error:", error.message);

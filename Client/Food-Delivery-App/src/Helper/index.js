@@ -26,11 +26,13 @@ export const fetchWithHandler = async (url, method, data) => {
       if (method !== 'GET' && method !== 'HEAD') {
           fetchOptions.body = JSON.stringify(data);
       }
-
+console.log('fetchOptions', fetchOptions);
+console.log('url', url);
       const response = await fetch(url, fetchOptions);
 
 
       const responseData = await response.json();
+      console.log('response', responseData);
       return handleApiResponse({ response, data: responseData });
   } catch (error) {
       toast.error("Network error, please try again");

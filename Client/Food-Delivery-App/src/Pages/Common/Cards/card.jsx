@@ -51,6 +51,7 @@ function Cards() {
                 const newCard = await saveCardDetails(cardData);
                 toast.success('Card added successfully!');
                 setCards(prevCards => [...prevCards, newCard]);
+                window.location.reload();
             }
             closeModal();
         } catch (error) {
@@ -79,9 +80,7 @@ function Cards() {
         if (token) {
             const fetchCards = async () => {
                 try {
-                    console.log('Fetching cards with token:', token);
                     const data = await getCards(token);
-                    console.log('Fetched data:', data); // Log the fetched data
                     if (Array.isArray(data)) {
                         setCards(data);  // Ensure 'data' is an array
                     } else {

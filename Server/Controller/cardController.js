@@ -43,48 +43,45 @@ const saveCard = async (req, res) => {
 
   
 const getCards = async (req, res) => {
+  console.log('Getting cards for user:', req.userId);
+
   try {
       if (!req.userId) {
           return res.status(401).json({ message: 'User not authenticated' });
       }
 
       const cards = await Card.find({ userId: req.userId });
-      console.log('Cards:', cards);
-
       if (!cards || cards.length === 0) {
           return res.status(404).json({ message: 'No cards found' });
       }
 
-      const maskedCards = cards.map(card => {
+      const maskedCards = cards.map((card) => {
           try {
-            const decryptedCardNumber = decrypt(card.cardNumber);
-              const last4Digits = decryptedCardNumber.slice(-4); 
-              const maskedNumber = 'x'.repeat(decryptedCardNumber.length - 4) + last4Digits; 
+              const decryptedCardNumber = decrypt(card.cardNumber);
+              const last4Digits = decryptedCardNumber.slice(-4);
+              const maskedNumber = 'x'.repeat(decryptedCardNumber.length - 4) + last4Digits;
 
-              console.log('Masked card number:', maskedNumber);
-              console.log('Original card number:', decryptedCardNumber);
-              console.log('CVV:', card.cvv);
-              console.log('Original card:', card._doc);
-              console.log('Masked card:', { ...card._doc, cardNumber: maskedNumber, cvv: 'XXX' });
               return {
                   ...card._doc,
-                  cardNumber: maskedNumber, 
-                  cvv: 'XXX', 
+                  cardNumber: maskedNumber,
+                  cvv: 'XXX',
               };
-          } catch (decryptionError) {
-              console.error('Error decrypting card data:', decryptionError);
-              return { ...card._doc, cardNumber: 'ERROR', cvv: 'XXX' }; 
+          } catch (error) {
+              console.error('Error decrypting card data for card:', card._id, error.message);
+              return {
+                  ...card._doc,
+                  cardNumber: 'ERROR',
+                  cvv: 'XXX',
+              };
           }
       });
 
       res.json(maskedCards);
   } catch (error) {
-      console.error('Error fetching cards:', error);
+      console.error('Error fetching cards:', error.message);
       res.status(500).json({ message: 'Internal server error' });
   }
 };
-
-
 
 const editCard = async (req, res) => {
   try {
