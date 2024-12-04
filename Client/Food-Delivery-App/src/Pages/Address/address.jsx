@@ -52,16 +52,22 @@ const Address = () => {
       return;
     }
   
+    if (!user || !user.id) {
+      toast.error('User not logged in. Please sign in again.');
+      return;
+    }
+  
     setIsLoading(true);
     try {
       let response;
       if (isEditing) {
         response = await updateAddress(formData, token);
+        toast.success('Address updated successfully!');
       } else {
         response = await saveAddress(formData, token, user.id);
+        toast.success('Address added successfully!');
       }
-
-      
+  
       if (response?.address) {
         setAddresses((prev) => {
           const updatedAddresses = isEditing
