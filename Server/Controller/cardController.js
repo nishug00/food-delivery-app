@@ -57,7 +57,7 @@ const getCards = async (req, res) => {
 
       const maskedCards = cards.map(card => {
           try {
-              const decryptedCardNumber = decrypt(card.cardNumber); 
+            const decryptedCardNumber = decrypt(card.cardNumber);
               const last4Digits = decryptedCardNumber.slice(-4); 
               const maskedNumber = 'x'.repeat(decryptedCardNumber.length - 4) + last4Digits; 
 
